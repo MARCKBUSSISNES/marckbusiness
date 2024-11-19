@@ -53,15 +53,7 @@ $services = [
             align-items: center;
         }
 
-        /* Imagen 'Diseño sin título' */
-        header img.diseño {
-            width: 100%; /* Hacerla a tamaño completo */
-            max-width: 100%; /* Para que no sea más grande que el contenedor */
-            height: auto;
-            object-fit: cover;
-            margin-bottom: 1rem;
-        }
-
+        /* Imagen del logo ajustada a 360px */
         header img.logo {
             width: 360px; /* Tamaño del logotipo ajustado a 360px */
             height: auto;
@@ -273,10 +265,7 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Imagen 'Diseño sin título' en la parte superior -->
-        <img class="diseño" src="images/Diseño%20sin%20título.png" alt="Diseño sin título">
-
-        <!-- Logotipo de la empresa -->
+        <!-- Logotipo de la empresa (sin la imagen adicional de fondo) -->
         <a href="https://wa.me/50258140621" target="_blank">
             <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo">
         </a>
@@ -328,5 +317,9 @@ $services = [
     <footer>
         <p id="footer-text"></p>
     </footer>
+
+    <!-- Botón de WhatsApp flotante -->
+    <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/50258140621'"></div>
+
 </body>
 </html>
