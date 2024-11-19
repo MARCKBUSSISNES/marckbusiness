@@ -1,4 +1,5 @@
 <?php
+// Datos dinámicos simulados (puedes conectarte a una base de datos más adelante)
 $company_name = "Marck Business";
 $services = [
     "Consultoría Empresarial",
@@ -16,8 +17,9 @@ $services = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $company_name ?></title>
+    <title>Marck Business</title>
     <style>
+        /* Paleta de colores */
         :root {
             --azul-marino: #003366;
             --naranja: #ff6600;
@@ -27,7 +29,7 @@ $services = [
         }
 
         body {
-            font-family: 'Candara', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--gris-claro);
@@ -40,95 +42,79 @@ $services = [
         header {
             background-color: var(--azul-marino);
             color: var(--blanco);
-            padding: 2rem 0;
             text-align: center;
+            padding: 20px 0;
             width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        header img.logo {
+        header img {
             width: 360px;
             height: auto;
-            margin-bottom: 1rem;
         }
 
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin: 0;
+            gap: 20px;
         }
 
         nav ul li a {
             color: var(--blanco);
             text-decoration: none;
-            font-size: 1.1rem;
             font-weight: bold;
             text-transform: uppercase;
         }
 
         nav ul li a:hover {
             color: var(--naranja);
-            border-bottom: 2px solid var(--naranja);
         }
 
         .section {
-            padding: 4rem 2rem;
-            text-align: center;
             background-color: var(--blanco);
             border-radius: 10px;
-            margin: 2rem auto;
-            max-width: 80%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .section h2 {
-            color: var(--naranja);
-            margin-bottom: 1.5rem;
+            color: var(--azul-marino);
         }
 
         .section ul {
             list-style: none;
             padding: 0;
-            text-align: left;
-            margin: 0 auto;
-            max-width: 600px;
         }
 
         .section ul li {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-            color: var(--gris);
+            background-color: var(--naranja);
+            color: var(--blanco);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         footer {
             background-color: var(--azul-marino);
             color: var(--blanco);
             text-align: center;
-            padding: 1.5rem;
+            padding: 10px;
             width: 100%;
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-image: url('images/whats.png');
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <header>
-        <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo">
+        <img src="images/Diseño%20sin%20título.png" alt="Logo de Marck Business">
         <nav>
             <ul>
-                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#about">Sobre Nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -136,12 +122,12 @@ $services = [
     </header>
 
     <section id="about" class="section">
-        <h2>Sobre nosotros</h2>
-        <p>¡Bienvenido a Marck Business! Estamos comprometidos a brindar soluciones tecnológicas personalizadas para impulsar el crecimiento de tu negocio.</p>
+        <h2>Sobre Nosotros</h2>
+        <p>En Marck Business, ofrecemos soluciones estratégicas para el crecimiento empresarial.</p>
     </section>
 
     <section id="services" class="section">
-        <h2>Nuestros Servicios</h2>
+        <h2>Servicios</h2>
         <ul>
             <?php foreach ($services as $service): ?>
                 <li><?= htmlspecialchars($service) ?></li>
@@ -150,20 +136,12 @@ $services = [
     </section>
 
     <section id="contact" class="section">
-        <h2>Contáctanos</h2>
-        <p>Número de contacto: +502 58140621</p>
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <textarea name="message" placeholder="Mensaje" required></textarea>
-            <button type="submit" style="background-color: var(--naranja); color: var(--blanco);">Enviar</button>
-        </form>
+        <h2>Contacto</h2>
+        <p>Para más información, contáctanos al +502 58140621.</p>
     </section>
 
     <footer>
-        <p>© <?= date('Y') ?> Marck Business. Todos los derechos reservados.</p>
+        <p>© <?= date("Y") ?> Marck Business. Todos los derechos reservados.</p>
     </footer>
-
-    <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/50258140621'"></div>
 </body>
 </html>
