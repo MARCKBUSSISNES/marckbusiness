@@ -36,6 +36,9 @@ $services = [
             padding: 0;
             background-color: var(--gris-claro);
             color: var(--gris);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
@@ -43,7 +46,11 @@ $services = [
             color: var(--blanco);
             padding: 2rem 0;
             text-align: center;
+            width: 100%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header img {
@@ -59,6 +66,8 @@ $services = [
             justify-content: center;
             gap: 2rem;
             align-items: center; /* Alineación vertical centrada */
+            width: 100%;
+            margin: 0;
         }
 
         nav ul li {
@@ -84,6 +93,7 @@ $services = [
         .nav-buttons {
             display: flex;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .nav-buttons button {
@@ -114,6 +124,7 @@ $services = [
             margin: 2rem auto;
             max-width: 80%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
 
         .section h2 {
@@ -253,16 +264,19 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Logo sin enlace -->
-        <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
+        <!-- Logotipo -->
+        <a href="https://wa.me/50258140621" target="_blank">
+            <img src="images/whats.png" alt="Logo">
+        </a>
         
+        <!-- Barra de navegación -->
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
-            <!-- Botones dentro de la barra de navegación -->
+            <!-- Botones de navegación adicionales -->
             <div class="nav-buttons">
                 <button onclick="window.location.href='videos.html'">Ver Videos</button>
                 <button onclick="window.location.href='comentarios.html'">Comentarios</button>
@@ -271,6 +285,7 @@ $services = [
         </nav>
     </header>
 
+    <!-- Secciones -->
     <section id="about" class="section">
         <h2>Sobre nosotros</h2>
         <p id="about-text"></p>
@@ -298,13 +313,15 @@ $services = [
         </form>
     </section>
 
-    <footer>
-        <p id="footer-text"></p>
-    </footer>
-
     <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/50258140621" target="_blank">
         <div class="whatsapp-btn"></div>
     </a>
+
+    <!-- Pie de página -->
+    <footer>
+        <p id="footer-text"></p>
+    </footer>
+
 </body>
 </html>
