@@ -17,40 +17,43 @@ $services = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marck Business</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #003366;
-            --secondary-color: #ff6600;
-            --background-light: #f5f5f5;
-            --text-dark: #333333;
-            --text-light: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, #003366, #4f8fd1);
+            --azul-marino: #003366;
+            --naranja: #ff6600;
+            --blanco: #ffffff;
+            --gris: #333333;
+            --gris-claro: #f7f7f7;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Candara', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--background-light);
-            color: var(--text-dark);
+            background-color: var(--gris-claro);
+            color: var(--gris);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
-            background: var(--gradient);
-            color: var(--text-light);
-            padding: 2rem;
+            background-color: var(--azul-marino);
+            color: var(--blanco);
+            padding: 2rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         header img.logo {
-            width: 150px;
+            width: 360px;
+            height: auto;
             margin-bottom: 1rem;
-            border-radius: 50%;
-            border: 2px solid var(--text-light);
+            border-radius: 0;
         }
 
         nav ul {
@@ -63,37 +66,31 @@ $services = [
         }
 
         nav ul li a {
-            color: var(--text-light);
+            color: var(--blanco);
             text-decoration: none;
+            font-size: 1.1rem;
             font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-transform: uppercase;
         }
 
         nav ul li a:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.1);
+            color: var(--naranja);
+            border-bottom: 2px solid var(--naranja);
         }
 
         .section {
-            padding: 3rem 1rem;
+            padding: 4rem 2rem;
             text-align: center;
-            background-color: var(--text-light);
+            background-color: var(--blanco);
             border-radius: 10px;
             margin: 2rem auto;
-            max-width: 800px;
-            box-shadow: 0 4px 15px var(--shadow);
+            max-width: 80%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .section p {
-            font-size: 1rem;
-            line-height: 1.8;
+            color: var(--naranja);
+            margin-bottom: 1.5rem;
         }
 
         .section ul {
@@ -102,46 +99,19 @@ $services = [
         }
 
         .section ul li {
-            background: var(--background-light);
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px var(--shadow);
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: var(--gris);
         }
 
         footer {
-            background-color: var(--primary-color);
-            color: var(--text-light);
+            background-color: var(--azul-marino);
+            color: var(--blanco);
             text-align: center;
-            padding: 2rem 1rem;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        button, input, textarea {
-            border: none;
-            outline: none;
-            border-radius: 5px;
-            padding: 0.8rem 1rem;
-            margin: 1rem 0;
-            font-size: 1rem;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0 4px 10px var(--shadow);
-        }
-
-        button {
-            background: var(--secondary-color);
-            color: var(--text-light);
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #ff8c3d;
-            transform: scale(1.05);
+            padding: 1.5rem;
+            width: 100%;
+            position: relative;
+            bottom: 0;
         }
 
         .whatsapp-btn {
@@ -152,25 +122,14 @@ $services = [
             height: 60px;
             background-image: url('images/whats.png');
             background-size: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.2);
+            background-position: center;
+            cursor: pointer;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById("footer-text").textContent =
-                `© ${new Date().getFullYear()} Marck Business. Todos los derechos reservados.`;
-        });
-    </script>
 </head>
 <body>
     <header>
-        <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo Marck Business">
+        <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo">
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
@@ -182,30 +141,31 @@ $services = [
 
     <section id="about" class="section">
         <h2>Sobre nosotros</h2>
-        <p>En Marck Business estamos comprometidos a ayudarte a crecer con soluciones tecnológicas personalizadas.</p>
+        <p>¡Bienvenido a Marck Business! Estamos comprometidos a brindar soluciones tecnológicas personalizadas para impulsar el crecimiento de tu negocio.</p>
     </section>
 
     <section id="services" class="section">
-        <h2>Servicios</h2>
+        <h2>Nuestros Servicios</h2>
         <ul>
             <?php foreach ($services as $service): ?>
-                <li><?php echo htmlspecialchars($service); ?></li>
+                <li><?= $service ?></li>
             <?php endforeach; ?>
         </ul>
     </section>
 
     <section id="contact" class="section">
         <h2>Contáctanos</h2>
+        <p>Número de contacto: +502 58140621</p>
         <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Tu nombre" required>
-            <input type="email" name="email" placeholder="Tu correo" required>
-            <textarea name="message" placeholder="Tu mensaje" required></textarea>
-            <button type="submit">Enviar</button>
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <textarea name="message" placeholder="Mensaje" required></textarea>
+            <button type="submit" style="background-color: var(--naranja); color: var(--blanco);">Enviar</button>
         </form>
     </section>
 
     <footer>
-        <p id="footer-text"></p>
+        <p>© <?= date('Y') ?> Marck Business. Todos los derechos reservados.</p>
     </footer>
 
     <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/50258140621'"></div>
