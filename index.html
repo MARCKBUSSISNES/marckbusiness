@@ -17,30 +17,31 @@ $services = [
     <style>
         /* Colores de la marca */
         :root {
-            --azul-tecnologico: #0066cc; /* Azul tecnológico */
+            --azul-marino: #003366; /* Azul marino oscuro */
             --naranja: #ff6600; /* Naranja */
             --blanco: #ffffff; /* Blanco */
             --gris: #333333; /* Gris oscuro para texto */
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Candara', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: var(--gris);
+            background-color: var(--azul-marino);
+            color: var(--blanco);
         }
 
         header {
-            background-color: var(--azul-tecnologico);
+            background-color: var(--azul-marino);
             color: var(--blanco);
-            padding: 1rem;
+            padding: 2rem;
             text-align: center;
         }
 
         header img {
-            width: 150px; /* Ajusta el tamaño del logotipo según lo necesites */
+            width: 300px; /* Tamaño grande del logotipo */
             height: auto;
+            cursor: pointer; /* Añadimos el cursor pointer para indicar que es un enlace */
         }
 
         nav ul {
@@ -58,6 +59,11 @@ $services = [
         nav ul li a {
             color: var(--blanco);
             text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--naranja);
         }
 
         .section {
@@ -66,11 +72,11 @@ $services = [
         }
 
         .section h2 {
-            color: var(--azul-tecnologico);
+            color: var(--naranja);
         }
 
         footer {
-            background-color: var(--azul-tecnologico);
+            background-color: var(--azul-marino);
             color: var(--blanco);
             text-align: center;
             padding: 1rem;
@@ -86,7 +92,7 @@ $services = [
         }
 
         button:hover {
-            background-color: #e65c00; /* Color naranja más oscuro al pasar el ratón */
+            background-color: #e65c00; /* Naranja más oscuro al pasar el ratón */
         }
 
         input, textarea {
@@ -125,8 +131,10 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Cambia la ruta del logotipo aquí -->
-        <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
+        <!-- Enlace al número de WhatsApp -->
+        <a href="https://wa.me/50258140621" target="_blank">
+            <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
+        </a>
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
