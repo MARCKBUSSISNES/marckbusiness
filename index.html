@@ -21,13 +21,13 @@ $services = [
     <style>
         /* Colores de la marca */
         :root {
-            --azul-marino: #003366; /* Azul marino oscuro */
-            --naranja: #ff6600; /* Naranja */
-            --blanco: #ffffff; /* Blanco */
-            --gris: #333333; /* Gris oscuro para texto */
-            --gris-claro: #f7f7f7; /* Gris claro para fondos */
-            --azul-claro: #4f8fd1; /* Azul claro */
-            --naranja-claro: #ff8c3d; /* Naranja más suave */
+            --azul-marino: #003366;
+            --naranja: #ff6600;
+            --blanco: #ffffff;
+            --gris: #333333;
+            --gris-claro: #f7f7f7;
+            --azul-claro: #4f8fd1;
+            --naranja-claro: #ff8c3d;
         }
 
         body {
@@ -53,9 +53,8 @@ $services = [
             align-items: center;
         }
 
-        /* Imagen del logo ajustada a 360px */
         header img.logo {
-            width: 360px; /* Tamaño del logotipo ajustado a 360px */
+            width: 360px;
             height: auto;
             margin-bottom: 1rem;
         }
@@ -66,8 +65,6 @@ $services = [
             display: flex;
             justify-content: center;
             gap: 2rem;
-            align-items: center; /* Alineación vertical centrada */
-            width: 100%;
             margin: 0;
         }
 
@@ -80,7 +77,6 @@ $services = [
             text-decoration: none;
             font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             font-weight: bold;
         }
 
@@ -90,54 +86,23 @@ $services = [
             padding-bottom: 5px;
         }
 
-        /* Botones dentro de la barra de navegación */
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .nav-buttons button {
-            background-color: var(--azul-claro);
-            color: var(--blanco);
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .nav-buttons button:hover {
-            background-color: var(--naranja);
-            transform: scale(1.05);
-        }
-
-        .nav-buttons button:active {
-            transform: scale(0.98);
-        }
-
         .section {
             padding: 4rem 2rem;
-            text-align: center;
             background-color: var(--blanco);
             border-radius: 10px;
             margin: 2rem auto;
             max-width: 80%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
         }
 
         .section h2 {
             color: var(--naranja);
-            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
         .section p {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: var(--gris);
         }
 
         footer {
@@ -145,45 +110,8 @@ $services = [
             color: var(--blanco);
             text-align: center;
             padding: 1.5rem;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
-            width: 100%;
         }
 
-        button {
-            background-color: var(--naranja);
-            color: var(--blanco);
-            border: none;
-            padding: 0.8rem 2rem;
-            cursor: pointer;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-        }
-
-        button:hover {
-            background-color: var(--naranja-claro);
-            transform: scale(1.05);
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        input, textarea {
-            padding: 0.8rem;
-            margin: 1rem 0;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            font-size: 1.1rem;
-        }
-
-        /* Estilo para la imagen de WhatsApp flotante */
         .whatsapp-btn {
             position: fixed;
             bottom: 20px;
@@ -192,44 +120,10 @@ $services = [
             height: 60px;
             background-image: url('images/whats.png');
             background-size: cover;
-            background-position: center;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             z-index: 999;
-            transition: transform 0.3s ease;
         }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* Botones adicionales para Videos, Comentarios, etc. */
-        .extra-buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .extra-buttons button {
-            background-color: var(--azul-claro);
-            color: var(--blanco);
-            padding: 0.8rem 2rem;
-            margin: 10px;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .extra-buttons button:hover {
-            background-color: var(--naranja);
-            transform: scale(1.05);
-        }
-
-        .extra-buttons button:active {
-            transform: scale(0.98);
-        }
-
     </style>
     <script>
         // Datos dinámicos simulados
@@ -237,17 +131,16 @@ $services = [
         const services = [
             "Consultoría en eficientar procesos",
             "Estrategia de Marketing",
-            "Programacion de software",
+            "Programación de software",
             "Actualizaciones de Software",
             "Desarrollo de Software",
             "Asesoría en Procesos de Producción",
             "Enfoque personalizado a Restaurantes"
-            "De restauranteros para restaurantes"
         ];
 
-        // Función para renderizar contenido dinámico
         function renderContent() {
-            document.getElementById("about-text").textContent = `¡Bienvenido a Marck Business Estamos comprometidos a darle soluciones sistematicas y a ayudar a crecer tu negocio por medio de la tecnologia y  procesos de computo bien aplicados a las necesidades que nuestros asociados requieran.`;
+            document.getElementById("about-text").textContent =
+                "¡Bienvenido a Marck Business! Estamos comprometidos a darle soluciones sistemáticas para crecer su negocio.";
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
@@ -256,37 +149,25 @@ $services = [
                 servicesList.appendChild(listItem);
             });
 
-            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} MarckBusiness. Todos los derechos reservados.`;
-            document.getElementById("contact-number").textContent = "Número de contacto: +502 58140621";
+            document.getElementById("footer-text").textContent =
+                `© ${new Date().getFullYear()} Marck Business. Todos los derechos reservados.`;
         }
 
-        // Ejecutar la función al cargar la página
         window.onload = renderContent;
     </script>
 </head>
 <body>
     <header>
-        <!-- Logotipo de la empresa (sin la imagen adicional de fondo) -->
-        <a href="https://wa.me/50258140621" target="_blank">
-            <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo">
-        </a>
-        
-        <!-- Barra de navegación -->
+        <img class="logo" src="images/Diseño%20sin%20título.png" alt="Logo Marck Business">
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
-            <div class="nav-buttons">
-                <button onclick="window.location.href='videos.html'">Ver Videos</button>
-                <button onclick="window.location.href='comentarios.html'">Comentarios</button>
-                <button onclick="window.location.href='demo.html'">Descargar Demo</button>
-            </div>
         </nav>
     </header>
 
-    <!-- Secciones -->
     <section id="about" class="section">
         <h2>Sobre nosotros</h2>
         <p id="about-text"></p>
@@ -299,28 +180,18 @@ $services = [
 
     <section id="contact" class="section">
         <h2>Contáctanos</h2>
-        <p id="contact-number"></p>
         <form action="#" method="POST">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" required><br><br>
-            
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" required></textarea><br><br>
-            
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+            <input type="email" id="email" name="email" placeholder="Tu correo" required>
+            <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea>
             <button type="submit">Enviar</button>
         </form>
     </section>
 
-    <!-- Pie de página -->
     <footer>
         <p id="footer-text"></p>
     </footer>
 
-    <!-- Botón de WhatsApp flotante -->
     <div class="whatsapp-btn" onclick="window.location.href='https://wa.me/50258140621'"></div>
-
 </body>
 </html>
