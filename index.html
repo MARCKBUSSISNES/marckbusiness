@@ -17,7 +17,7 @@ $services = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $company_name; ?></title>
+    <title>Marck Business</title>
     <style>
         /* Colores de la marca */
         :root {
@@ -233,20 +233,21 @@ $services = [
     </style>
     <script>
         // Datos dinámicos simulados
-        const companyName = "<?php echo $company_name; ?>";
+        const companyName = "Marck Business";
         const services = [
-            "Consultoría Empresarial",
+            "Consultoría en eficientar procesos",
             "Estrategia de Marketing",
-            "Planificación Financiera",
+            "Programacion de software",
             "Actualizaciones de Software",
-            "Desarrollo de Sistemas",
-            "Asesoría en Procesos de Producción y Atención",
-            "Desarrollo de Páginas Web"
+            "Desarrollo de Software",
+            "Asesoría en Procesos de Producción",
+            "Enfoque personalizado a Restaurantes"
+            "De restauranteros para restaurantes"
         ];
 
         // Función para renderizar contenido dinámico
         function renderContent() {
-            document.getElementById("about-text").textContent = `¡Bienvenido a ${companyName}! Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
+            document.getElementById("about-text").textContent = `¡Bienvenido a Marck Business Estamos comprometidos a darle soluciones sistematicas y a ayudar a crecer tu negocio por medio de la tecnologia y  procesos de computo bien aplicados a las necesidades que nuestros asociados requieran.`;
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
@@ -255,7 +256,7 @@ $services = [
                 servicesList.appendChild(listItem);
             });
 
-            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} ${companyName}. Todos los derechos reservados.`;
+            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} MarckBusiness. Todos los derechos reservados.`;
             document.getElementById("contact-number").textContent = "Número de contacto: +502 58140621";
         }
 
