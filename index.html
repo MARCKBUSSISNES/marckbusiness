@@ -25,26 +25,31 @@ $services = [
             --naranja: #ff6600; /* Naranja */
             --blanco: #ffffff; /* Blanco */
             --gris: #333333; /* Gris oscuro para texto */
+            --gris-claro: #f7f7f7; /* Gris claro para fondos */
+            --azul-claro: #4f8fd1; /* Azul claro */
+            --naranja-claro: #ff8c3d; /* Naranja más suave */
         }
 
         body {
             font-family: 'Candara', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--azul-marino);
-            color: var(--blanco);
+            background-color: var(--gris-claro);
+            color: var(--gris);
         }
 
         header {
             background-color: var(--azul-marino);
             color: var(--blanco);
-            padding: 2rem;
+            padding: 2rem 0;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         header img {
             width: 300px; /* Tamaño grande del logotipo */
             height: auto;
+            margin-bottom: 1rem;
         }
 
         nav ul {
@@ -52,7 +57,7 @@ $services = [
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 2rem;
         }
 
         nav ul li {
@@ -63,47 +68,74 @@ $services = [
             color: var(--blanco);
             text-decoration: none;
             font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
         }
 
         nav ul li a:hover {
             color: var(--naranja);
+            border-bottom: 2px solid var(--naranja);
+            padding-bottom: 5px;
         }
 
         .section {
-            padding: 2rem;
+            padding: 4rem 2rem;
             text-align: center;
+            background-color: var(--blanco);
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 80%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .section h2 {
             color: var(--naranja);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--gris);
         }
 
         footer {
             background-color: var(--azul-marino);
             color: var(--blanco);
             text-align: center;
-            padding: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         button {
             background-color: var(--naranja);
             color: var(--blanco);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 2rem;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
-            background-color: #e65c00; /* Naranja más oscuro al pasar el ratón */
+            background-color: var(--naranja-claro);
         }
 
         input, textarea {
-            padding: 0.5rem;
-            margin: 0.5rem 0;
+            padding: 0.8rem;
+            margin: 1rem 0;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
             width: 80%;
+            max-width: 600px;
+            font-size: 1.1rem;
         }
 
         /* Estilo para la imagen de WhatsApp flotante */
@@ -120,6 +152,11 @@ $services = [
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             z-index: 999;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
         }
     </style>
     <script>
