@@ -45,7 +45,6 @@ $services = [
         header img {
             width: 300px; /* Tamaño grande del logotipo */
             height: auto;
-            cursor: pointer; /* Añadimos el cursor pointer para indicar que es un enlace */
         }
 
         nav ul {
@@ -138,7 +137,7 @@ $services = [
 
         // Función para renderizar contenido dinámico
         function renderContent() {
-            document.getElementById("about-text").textContent = `¡Bienvenido a MarckBusiness Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
+            document.getElementById("about-text").textContent = `¡Bienvenido a ${companyName}! Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
@@ -147,7 +146,7 @@ $services = [
                 servicesList.appendChild(listItem);
             });
 
-            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} MarckBusiness. Todos los derechos reservados.`;
+            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} ${companyName}. Todos los derechos reservados.`;
             document.getElementById("contact-number").textContent = "Número de contacto: +502 58140621";
         }
 
@@ -157,10 +156,8 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Enlace al número de WhatsApp -->
-        <a href="https://wa.me/50258140621" target="_blank">
-            <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
-        </a>
+        <!-- Logo sin enlace -->
+        <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
@@ -202,6 +199,8 @@ $services = [
     </footer>
 
     <!-- Botón flotante de WhatsApp -->
-    <div class="whatsapp-btn"></div>
+    <a href="https://wa.me/50258140621" target="_blank">
+        <div class="whatsapp-btn"></div>
+    </a>
 </body>
 </html>
