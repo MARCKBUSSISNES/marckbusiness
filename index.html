@@ -19,7 +19,6 @@ $services = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $company_name; ?></title>
     <style>
-        /* Fuentes y colores de la marca */
         :root {
             --azul-marino: #003366;
             --naranja: #ff6600;
@@ -28,9 +27,8 @@ $services = [
             --gris-claro: #f7f7f7;
         }
 
-        /* Usar la fuente Candara para todo el sitio */
         body {
-            font-family: 'Candara', sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--gris-claro);
@@ -97,6 +95,20 @@ $services = [
             margin-bottom: 1rem;
         }
 
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section ul li {
+            background-color: var(--naranja);
+            color: var(--blanco);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
         footer {
             background-color: var(--azul-marino);
             color: var(--blanco);
@@ -136,16 +148,12 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Logo con enlace a WhatsApp -->
-        <a href="https://wa.me/50258140621" target="_blank">
-            <img src="images/Diseño%20sin%20título.png" alt="Logo de Marck Business">
-        </a>
-        
-        <!-- Barra de navegación -->
+        <img src="images/Diseño%20sin%20título.png" alt="Logo de Marck Business">
         <nav>
             <ul>
                 <li><a href="#about">Sobre Nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
+                <li><a href="#new-services">Nuestros Nuevos Servicios</a></li> <!-- Nueva sección de servicios -->
                 <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
@@ -156,13 +164,24 @@ $services = [
         <p>En Marck Business ofrecemos soluciones estratégicas para el crecimiento empresarial.</p>
     </section>
 
-    <!-- Sección de servicios -->
     <section id="services" class="section">
         <h2>Servicios</h2>
         <ul>
             <?php foreach ($services as $service): ?>
-                <li><?php echo $service; ?></li>
+                <li><?= htmlspecialchars($service); ?></li>
             <?php endforeach; ?>
+        </ul>
+    </section>
+
+    <!-- Nueva sección de servicios -->
+    <section id="new-services" class="section">
+        <h2>Servicios Adicionales</h2>
+        <ul>
+            <li>Consultoría en Transformación Digital</li>
+            <li>Optimización de Procesos Empresariales</li>
+            <li>Implementación de ERP y CRM</li>
+            <li>Marketing Digital Avanzado</li>
+            <li>Desarrollo de Soluciones a Medida</li>
         </ul>
     </section>
 
@@ -178,3 +197,4 @@ $services = [
     <div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
 </body>
 </html>
+
