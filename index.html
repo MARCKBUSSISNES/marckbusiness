@@ -28,6 +28,11 @@
             text-align: center;
         }
 
+        header img {
+            width: 150px; /* Ajusta el tamaño del logotipo según lo necesites */
+            height: auto;
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -93,7 +98,6 @@
 
         // Función para renderizar contenido dinámico
         function renderContent() {
-            document.getElementById("company-name").textContent = companyName;
             document.getElementById("about-text").textContent = `¡Bienvenido a ${companyName}! Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
 
             const servicesList = document.getElementById("services-list");
@@ -113,7 +117,7 @@
 </head>
 <body>
     <header>
-        <h1 id="company-name"></h1>
+        <img src="images/logo.png" alt="Marck Business Logo"> <!-- Cambia la ruta del logotipo aquí -->
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
