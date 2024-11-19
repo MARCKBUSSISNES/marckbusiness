@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marck Business</title>
     <style>
+        /* Colores de la marca */
+        :root {
+            --azul-tecnologico: #0066cc; /* Azul tecnológico */
+            --naranja: #ff6600; /* Naranja */
+            --blanco: #ffffff; /* Blanco */
+            --gris: #333333; /* Gris oscuro para texto */
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
-            color: #333;
+            color: var(--gris);
         }
+
         header {
-            background-color: #333;
-            color: white;
+            background-color: var(--azul-tecnologico);
+            color: var(--blanco);
             padding: 1rem;
             text-align: center;
         }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -25,37 +35,66 @@
             justify-content: center;
             gap: 1rem;
         }
+
         nav ul li {
             display: inline;
         }
+
         nav ul li a {
-            color: white;
+            color: var(--blanco);
             text-decoration: none;
         }
+
         .section {
             padding: 2rem;
             text-align: center;
         }
+
+        .section h2 {
+            color: var(--azul-tecnologico);
+        }
+
         footer {
-            background-color: #333;
-            color: white;
+            background-color: var(--azul-tecnologico);
+            color: var(--blanco);
             text-align: center;
             padding: 1rem;
+        }
+
+        button {
+            background-color: var(--naranja);
+            color: var(--blanco);
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #e65c00; /* Color naranja más oscuro al pasar el ratón */
+        }
+
+        input, textarea {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80%;
         }
     </style>
     <script>
         // Datos dinámicos simulados
         const companyName = "Marck Business";
         const services = [
-            "Business Consulting",
-            "Marketing Strategy",
-            "Financial Planning"
+            "Consultoría Empresarial",
+            "Estrategia de Marketing",
+            "Planificación Financiera"
         ];
 
         // Función para renderizar contenido dinámico
         function renderContent() {
             document.getElementById("company-name").textContent = companyName;
-            document.getElementById("about-text").textContent = `Welcome to ${companyName}! We are dedicated to helping your business grow and succeed.`;
+            document.getElementById("about-text").textContent = `¡Bienvenido a ${companyName}! Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
@@ -64,7 +103,8 @@
                 servicesList.appendChild(listItem);
             });
 
-            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} ${companyName}. All Rights Reserved.`;
+            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} ${companyName}. Todos los derechos reservados.`;
+            document.getElementById("contact-number").textContent = "Número de contacto: +502 58140621";
         }
 
         // Ejecutar la función al cargar la página
@@ -76,36 +116,37 @@
         <h1 id="company-name"></h1>
         <nav>
             <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="about" class="section">
-        <h2>About Us</h2>
+        <h2>Sobre nosotros</h2>
         <p id="about-text"></p>
     </section>
 
     <section id="services" class="section">
-        <h2>Our Services</h2>
+        <h2>Nuestros Servicios</h2>
         <ul id="services-list"></ul>
     </section>
 
     <section id="contact" class="section">
-        <h2>Contact Us</h2>
+        <h2>Contáctanos</h2>
+        <p id="contact-number"></p>
         <form action="#" method="POST">
-            <label for="name">Name:</label>
+            <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required><br><br>
             
-            <label for="email">Email:</label>
+            <label for="email">Correo electrónico:</label>
             <input type="email" id="email" name="email" required><br><br>
             
-            <label for="message">Message:</label>
+            <label for="message">Mensaje:</label>
             <textarea id="message" name="message" required></textarea><br><br>
             
-            <button type="submit">Send</button>
+            <button type="submit">Enviar</button>
         </form>
     </section>
 
