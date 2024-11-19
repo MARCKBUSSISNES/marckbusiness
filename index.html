@@ -1,9 +1,19 @@
+<?php
+// Simulación de datos dinámicos (puedes conectarte a una base de datos más adelante)
+$company_name = "Marck Business";
+$services = [
+    "Consultoría Empresarial",
+    "Estrategia de Marketing",
+    "Planificación Financiera",
+];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marck Business</title>
+    <title><?php echo $company_name; ?></title>
     <style>
         /* Colores de la marca */
         :root {
@@ -89,11 +99,9 @@
     </style>
     <script>
         // Datos dinámicos simulados
-        const companyName = "Marck Business";
+        const companyName = "<?php echo $company_name; ?>";
         const services = [
-            "Consultoría Empresarial",
-            "Estrategia de Marketing",
-            "Planificación Financiera"
+            "<?php echo implode('", "', $services); ?>"
         ];
 
         // Función para renderizar contenido dinámico
@@ -117,7 +125,8 @@
 </head>
 <body>
     <header>
-        <img src="images/logo.png" alt="Marck Business Logo"> <!-- Cambia la ruta del logotipo aquí -->
+        <!-- Cambia la ruta del logotipo aquí -->
+        <img src="images/logo.png" alt="Marck Business Logo">
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
