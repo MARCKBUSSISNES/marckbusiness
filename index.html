@@ -140,6 +140,7 @@ $services = [
         <nav>
             <ul>
                 <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
@@ -148,6 +149,16 @@ $services = [
     <section id="about" class="section">
         <h2>Sobre Nosotros</h2>
         <p>En Marck Business ofrecemos soluciones estratégicas para el crecimiento empresarial.</p>
+    </section>
+
+    <!-- Sección de servicios -->
+    <section id="services" class="section">
+        <h2>Servicios</h2>
+        <ul>
+            <?php foreach ($services as $service): ?>
+                <li><?php echo $service; ?></li>
+            <?php endforeach; ?>
+        </ul>
     </section>
 
     <section id="contact" class="section">
