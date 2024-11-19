@@ -5,10 +5,6 @@ $services = [
     "Consultoría Empresarial",
     "Estrategia de Marketing",
     "Planificación Financiera",
-    "Actualizaciones de Software",
-    "Desarrollo de Sistemas",
-    "Asesoría en Procesos de Producción y Atención",
-    "Desarrollo de Páginas Web"
 ];
 ?>
 
@@ -35,17 +31,28 @@ $services = [
             color: var(--blanco);
         }
 
+        /* Barra fija */
         header {
             background-color: var(--azul-marino);
             color: var(--blanco);
             padding: 2rem;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            left: 0;
         }
 
         header img {
             width: 300px; /* Tamaño grande del logotipo */
             height: auto;
             cursor: pointer; /* Añadimos el cursor pointer para indicar que es un enlace */
+        }
+
+        /* Espacio para que no se sobrepongan los elementos debajo del header */
+        body {
+            padding-top: 140px; /* Añadimos espacio para la barra fija */
         }
 
         nav ul {
@@ -71,45 +78,17 @@ $services = [
         }
 
         .section {
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--naranja);
         }
 
         .section h2 {
             color: var(--naranja);
             font-size: 2.5rem;
-            margin-bottom: 1rem;
         }
 
         .section p {
             font-size: 1.2rem; /* Aumentamos el tamaño de la letra */
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .service-item {
-            background-color: var(--blanco);
-            color: var(--azul-marino);
-            padding: 1.5rem;
-            width: 250px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .service-item:hover {
-            transform: scale(1.05);
-            background-color: var(--naranja);
-            color: var(--blanco);
         }
 
         footer {
@@ -139,30 +118,6 @@ $services = [
             border-radius: 4px;
             width: 80%;
         }
-
-        /* Estilo para la imagen de WhatsApp flotante */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-image: url('images/whats.png');
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 999;
-        }
-
-        /* Estilo para el logotipo flotante */
-        .logo {
-            display: block;
-            margin: 0 auto;
-            width: 250px;
-            height: auto;
-        }
     </style>
     <script>
         // Datos dinámicos simulados
@@ -177,8 +132,7 @@ $services = [
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
-                const listItem = document.createElement("div");
-                listItem.classList.add("service-item");
+                const listItem = document.createElement("li");
                 listItem.textContent = service;
                 servicesList.appendChild(listItem);
             });
@@ -193,8 +147,10 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Logo de la empresa -->
-        <img src="images/Diseño_sin_título.png" alt="Marck Business Logo" class="logo">
+        <!-- Enlace al número de WhatsApp -->
+        <a href="https://wa.me/50258140621" target="_blank">
+            <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
+        </a>
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
@@ -211,7 +167,7 @@ $services = [
 
     <section id="services" class="section">
         <h2>Nuestros Servicios</h2>
-        <div id="services-list" class="service-list"></div>
+        <ul id="services-list"></ul>
     </section>
 
     <section id="contact" class="section">
@@ -234,10 +190,6 @@ $services = [
     <footer>
         <p id="footer-text"></p>
     </footer>
-
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/50258140621" target="_blank">
-        <div class="whatsapp-btn"></div>
-    </a>
 </body>
 </html>
+
