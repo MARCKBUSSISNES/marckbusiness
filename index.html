@@ -153,6 +153,7 @@ $services = [
             <ul>
                 <li><a href="#about">Sobre Nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
+                <li><a href="#new-services">Nuestros Nuevos Servicios</a></li> <!-- Nueva sección de servicios -->
                 <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
@@ -169,6 +170,18 @@ $services = [
             <?php foreach ($services as $service): ?>
                 <li><?= htmlspecialchars($service); ?></li>
             <?php endforeach; ?>
+        </ul>
+    </section>
+
+    <!-- Nueva sección de servicios -->
+    <section id="new-services" class="section">
+        <h2>Servicios Adicionales</h2>
+        <ul>
+            <li>Consultoría en Transformación Digital</li>
+            <li>Optimización de Procesos Empresariales</li>
+            <li>Implementación de ERP y CRM</li>
+            <li>Marketing Digital Avanzado</li>
+            <li>Desarrollo de Soluciones a Medida</li>
         </ul>
     </section>
 
