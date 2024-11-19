@@ -58,6 +58,7 @@ $services = [
             display: flex;
             justify-content: center;
             gap: 2rem;
+            align-items: center; /* Alineación vertical centrada */
         }
 
         nav ul li {
@@ -77,6 +78,32 @@ $services = [
             color: var(--naranja);
             border-bottom: 2px solid var(--naranja);
             padding-bottom: 5px;
+        }
+
+        /* Botones dentro de la barra de navegación */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-buttons button {
+            background-color: var(--azul-claro);
+            color: var(--blanco);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-buttons button:hover {
+            background-color: var(--naranja);
+            transform: scale(1.05);
+        }
+
+        .nav-buttons button:active {
+            transform: scale(0.98);
         }
 
         .section {
@@ -228,12 +255,19 @@ $services = [
     <header>
         <!-- Logo sin enlace -->
         <img src="images/Diseño%20sin%20título.png" alt="Marck Business Logo">
+        
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
+            <!-- Botones dentro de la barra de navegación -->
+            <div class="nav-buttons">
+                <button onclick="window.location.href='videos.html'">Ver Videos</button>
+                <button onclick="window.location.href='comentarios.html'">Comentarios</button>
+                <button onclick="window.location.href='demo.html'">Descargar Demo</button>
+            </div>
         </nav>
     </header>
 
@@ -250,7 +284,7 @@ $services = [
     <section id="contact" class="section">
         <h2>Contáctanos</h2>
         <p id="contact-number"></p>
-        <form action="mailto:juanluisruizbalcarcel@gmail.com" method="POST">
+        <form action="#" method="POST">
             <label for="name">Nombre:</label>
             <input type="text" id="name" name="name" required><br><br>
             
@@ -262,13 +296,6 @@ $services = [
             
             <button type="submit">Enviar</button>
         </form>
-        
-        <!-- Botones adicionales -->
-        <div class="extra-buttons">
-            <button onclick="window.location.href='videos.html'">Ver Videos</button>
-            <button onclick="window.location.href='comentarios.html'">Comentarios</button>
-            <button onclick="window.location.href='demo.html'">Descargar Demo</button>
-        </div>
     </section>
 
     <footer>
@@ -281,4 +308,3 @@ $services = [
     </a>
 </body>
 </html>
-
