@@ -139,6 +139,30 @@ $services = [
             border-radius: 4px;
             width: 80%;
         }
+
+        /* Estilo para la imagen de WhatsApp flotante */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-image: url('images/whats.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        /* Estilo para el logotipo flotante */
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 250px;
+            height: auto;
+        }
     </style>
     <script>
         // Datos dinámicos simulados
@@ -169,10 +193,8 @@ $services = [
 </head>
 <body>
     <header>
-        <!-- Enlace al número de WhatsApp con imagen -->
-        <a href="https://wa.me/50258140621" target="_blank">
-            <img src="images/whats.png" alt="WhatsApp Marck Business">
-        </a>
+        <!-- Logo de la empresa -->
+        <img src="images/Diseño_sin_título.png" alt="Marck Business Logo" class="logo">
         <nav>
             <ul>
                 <li><a href="#about">Sobre nosotros</a></li>
@@ -212,6 +234,10 @@ $services = [
     <footer>
         <p id="footer-text"></p>
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/50258140621" target="_blank">
+        <div class="whatsapp-btn"></div>
+    </a>
 </body>
 </html>
-
