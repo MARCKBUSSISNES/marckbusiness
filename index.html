@@ -5,6 +5,10 @@ $services = [
     "Consultoría Empresarial",
     "Estrategia de Marketing",
     "Planificación Financiera",
+    "Actualizaciones de Software",
+    "Desarrollo de Sistemas",
+    "Asesoría en Procesos de Producción y Atención",
+    "Desarrollo de Páginas Web"
 ];
 ?>
 
@@ -31,28 +35,17 @@ $services = [
             color: var(--blanco);
         }
 
-        /* Barra fija */
         header {
             background-color: var(--azul-marino);
             color: var(--blanco);
             padding: 2rem;
             text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            left: 0;
         }
 
         header img {
             width: 300px; /* Tamaño grande del logotipo */
             height: auto;
             cursor: pointer; /* Añadimos el cursor pointer para indicar que es un enlace */
-        }
-
-        /* Espacio para que no se sobrepongan los elementos debajo del header */
-        body {
-            padding-top: 140px; /* Añadimos espacio para la barra fija */
         }
 
         nav ul {
@@ -78,17 +71,45 @@ $services = [
         }
 
         .section {
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
+            border-bottom: 2px solid var(--naranja);
         }
 
         .section h2 {
             color: var(--naranja);
             font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .section p {
             font-size: 1.2rem; /* Aumentamos el tamaño de la letra */
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .service-item {
+            background-color: var(--blanco);
+            color: var(--azul-marino);
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+            background-color: var(--naranja);
+            color: var(--blanco);
         }
 
         footer {
@@ -132,7 +153,8 @@ $services = [
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
-                const listItem = document.createElement("li");
+                const listItem = document.createElement("div");
+                listItem.classList.add("service-item");
                 listItem.textContent = service;
                 servicesList.appendChild(listItem);
             });
@@ -167,7 +189,7 @@ $services = [
 
     <section id="services" class="section">
         <h2>Nuestros Servicios</h2>
-        <ul id="services-list"></ul>
+        <div id="services-list" class="service-list"></div>
     </section>
 
     <section id="contact" class="section">
