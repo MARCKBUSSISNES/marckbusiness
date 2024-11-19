@@ -47,7 +47,7 @@ $services = [
         }
 
         header img {
-            width: 500px; /* Tamaño aún más grande del logotipo */
+            width: 360px; /* Tamaño del logotipo ajustado a 360px */
             height: auto;
             margin-bottom: 1rem;
         }
@@ -120,12 +120,18 @@ $services = [
             cursor: pointer;
             font-size: 1.1rem;
             border-radius: 30px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
         }
 
         button:hover {
             background-color: var(--naranja-claro);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.98);
         }
 
         input, textarea {
@@ -158,6 +164,33 @@ $services = [
         .whatsapp-btn:hover {
             transform: scale(1.1);
         }
+
+        /* Botones adicionales para Videos, Comentarios, etc. */
+        .extra-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .extra-buttons button {
+            background-color: var(--azul-claro);
+            color: var(--blanco);
+            padding: 0.8rem 2rem;
+            margin: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .extra-buttons button:hover {
+            background-color: var(--naranja);
+            transform: scale(1.05);
+        }
+
+        .extra-buttons button:active {
+            transform: scale(0.98);
+        }
+
     </style>
     <script>
         // Datos dinámicos simulados
@@ -229,6 +262,13 @@ $services = [
             
             <button type="submit">Enviar</button>
         </form>
+        
+        <!-- Botones adicionales -->
+        <div class="extra-buttons">
+            <button onclick="window.location.href='videos.html'">Ver Videos</button>
+            <button onclick="window.location.href='comentarios.html'">Comentarios</button>
+            <button onclick="window.location.href='demo.html'">Descargar Demo</button>
+        </div>
     </section>
 
     <footer>
@@ -241,3 +281,4 @@ $services = [
     </a>
 </body>
 </html>
+
