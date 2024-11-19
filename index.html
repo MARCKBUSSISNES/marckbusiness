@@ -233,7 +233,7 @@ $services = [
     </style>
     <script>
         // Datos dinámicos simulados
-        const companyName = "Marck Business";
+        const companyName = "<?php echo $company_name; ?>";
         const services = [
             "Consultoría Empresarial",
             "Estrategia de Marketing",
@@ -246,7 +246,7 @@ $services = [
 
         // Función para renderizar contenido dinámico
         function renderContent() {
-            document.getElementById("about-text").textContent = ¡Bienvenido a Marck Business Estamos enfocados a ayudar a solucionar los problemas sistematicos y a eficientar los procesos de tu negocio, teniendo un crecimiento exponencial.;
+            document.getElementById("about-text").textContent = `¡Bienvenido a ${companyName}! Estamos dedicados a ayudar a tu negocio a crecer y tener éxito.`;
 
             const servicesList = document.getElementById("services-list");
             services.forEach(service => {
@@ -255,7 +255,7 @@ $services = [
                 servicesList.appendChild(listItem);
             });
 
-            document.getElementById("footer-text").textContent = © ${new Date().getFullYear()} MarckBusiness. Todos los derechos reservados.;
+            document.getElementById("footer-text").textContent = `© ${new Date().getFullYear()} ${companyName}. Todos los derechos reservados.`;
             document.getElementById("contact-number").textContent = "Número de contacto: +502 58140621";
         }
 
