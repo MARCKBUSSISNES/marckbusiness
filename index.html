@@ -159,6 +159,41 @@ $services = [
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        .comments-section {
+            padding: 2rem 1rem;
+            text-align: center;
+            background-color: var(--blanco);
+            margin: 1rem auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+        }
+
+        .comments-section textarea {
+            width: 90%;
+            max-width: 600px;
+            height: 100px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--gris);
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comments-section button {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--naranja);
+            color: var(--blanco);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comments-section button:hover {
+            background-color: var(--azul-marino);
+        }
+
         @media (max-width: 600px) {
             nav ul {
                 flex-direction: column;
@@ -180,6 +215,7 @@ $services = [
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#new-services">Nuestros Nuevos Servicios</a></li>
                 <li><a href="#videos">Videos</a></li>
+                <li><a href="#comments">Comentarios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
@@ -214,6 +250,13 @@ $services = [
         <h2>Videos</h2>
         <video src="images/video1.mp4" controls></video>
         <video src="images/video2.mp4" controls></video>
+    </section>
+
+    <section id="comments" class="section comments-section">
+        <h2>Comentarios</h2>
+        <textarea placeholder="Escribe tu comentario..."></textarea>
+        <br>
+        <button>Enviar</button>
     </section>
 
     <section id="contact" class="section">
