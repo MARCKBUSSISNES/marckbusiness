@@ -1,5 +1,5 @@
 <?php
-// Simulación de datos dinámicos (puedes conectarte a una base de datos más adelante)
+// Simulación de datos dinámicos
 $company_name = "Marck Business";
 $services = [
     "Consultoría Empresarial",
@@ -9,6 +9,12 @@ $services = [
     "Desarrollo de Sistemas",
     "Asesoría en Procesos de Producción y Atención",
     "Desarrollo de Páginas Web"
+];
+$comments = [
+    "Excelente servicio",
+    "Muy profesionales",
+    "Soluciones innovadoras",
+    "Altamente recomendados",
 ];
 ?>
 
@@ -26,7 +32,6 @@ $services = [
             --gris: #333333;
             --gris-claro: #f7f7f7;
             --negro: #000000;
-            --gradiente: linear-gradient(135deg, #003366, #ff6600);
         }
 
         body {
@@ -35,7 +40,6 @@ $services = [
             padding: 0;
             background-color: var(--gris-claro);
             color: var(--gris);
-            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
@@ -57,18 +61,11 @@ $services = [
 
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        nav ul li {
-            flex: none;
+            padding: 0;
+            margin: 0;
         }
 
         nav ul li a {
@@ -78,8 +75,7 @@ $services = [
             padding: 0.5rem 1rem;
             border: 2px solid var(--blanco);
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            display: inline-block;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         nav ul li a:hover {
@@ -96,113 +92,56 @@ $services = [
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 90%;
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateX(-100px);
             transition: all 0.5s ease;
         }
 
         .section.active {
             opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section h2 {
-            color: var(--azul-marino);
-            margin-bottom: 1rem;
-        }
-
-        .section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .section ul li {
-            background-color: var(--naranja);
-            color: var(--blanco);
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            border-radius: 5px;
+            transform: translateX(0);
         }
 
         footer {
-            background: var(--gradiente);
+            background-color: var(--azul-marino);
             color: var(--blanco);
             text-align: center;
             padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-image: url('images/whats.png');
-            background-size: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        .video-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .video-section video {
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .comments-section {
-            padding: 2rem 1rem;
             text-align: center;
-            background-color: var(--blanco);
-            margin: 1rem auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
         }
 
         .comments-section textarea {
-            width: 90%;
+            width: 80%;
             max-width: 600px;
             height: 100px;
-            padding: 1rem;
             margin-bottom: 1rem;
-            border: 2px solid var(--gris);
+            border: 1px solid var(--gris);
             border-radius: 5px;
-            resize: none;
+            padding: 0.5rem;
         }
 
         .comments-section button {
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1rem;
             background-color: var(--naranja);
-            color: var(--blanco);
             border: none;
+            color: var(--blanco);
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .comments-section button:hover {
-            background-color: var(--azul-marino);
+        .comments-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
         }
 
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-            }
-
-            header img {
-                width: 80%;
-                margin: 0 auto;
-            }
+        .comments-section ul li {
+            background-color: var(--gris-claro);
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -213,7 +152,7 @@ $services = [
             <ul>
                 <li><a href="#about">Sobre Nosotros</a></li>
                 <li><a href="#services">Servicios</a></li>
-                <li><a href="#new-services">Nuestros Nuevos Servicios</a></li>
+                <li><a href="#new-services">Servicios Adicionales</a></li>
                 <li><a href="#videos">Videos</a></li>
                 <li><a href="#comments">Comentarios</a></li>
                 <li><a href="#contact">Contacto</a></li>
@@ -242,11 +181,10 @@ $services = [
             <li>Optimización de Procesos Empresariales</li>
             <li>Implementación de ERP y CRM</li>
             <li>Marketing Digital Avanzado</li>
-            <li>Desarrollo de Soluciones a Medida</li>
         </ul>
     </section>
 
-    <section id="videos" class="section video-section">
+    <section id="videos" class="section">
         <h2>Videos</h2>
         <video src="images/video1.mp4" controls></video>
         <video src="images/video2.mp4" controls></video>
@@ -254,38 +192,32 @@ $services = [
 
     <section id="comments" class="section comments-section">
         <h2>Comentarios</h2>
+        <ul>
+            <?php foreach ($comments as $comment): ?>
+                <li><?= htmlspecialchars($comment); ?></li>
+            <?php endforeach; ?>
+        </ul>
         <textarea placeholder="Escribe tu comentario..."></textarea>
         <br>
         <button>Enviar</button>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>Contacto</h2>
-        <p>Para más información, contáctanos al <strong>+502 58140621</strong>.</p>
     </section>
 
     <footer>
         <p>© <?= date("Y"); ?> Marck Business. Todos los derechos reservados.</p>
     </footer>
 
-    <div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
-
     <script>
         const sections = document.querySelectorAll('.section');
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, {
-            threshold: 0.3
-        });
+        }, { threshold: 0.2 });
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
