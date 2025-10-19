@@ -64,6 +64,7 @@ header ul {
     display: flex;
     list-style: none;
     gap: 1rem;
+    max-height: none; /* asegura que desktop siempre vea los enlaces */
 }
 header ul li a {
     text-decoration: none;
@@ -359,6 +360,7 @@ footer {
     .hero p{font-size:1rem;}
     .services-grid{gap:1rem;}
     .pricing-grid{gap:1rem;}
+
     /* Menú hamburguesa */
     .menu-toggle{display:flex;}
     header ul{
@@ -370,7 +372,7 @@ footer {
         transition: max-height 0.3s ease;
     }
     header ul.show{
-        max-height: 500px; /* suficiente para mostrar todos los enlaces */
+        max-height: 500px;
     }
     header ul li a{
         padding: 1rem;
@@ -378,6 +380,12 @@ footer {
         text-align: center;
         border-top: 1px solid #333;
     }
+}
+
+/* Animaciones */
+.animate {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 </style>
 </head>
@@ -427,7 +435,6 @@ footer {
     </div>
 </section>
 
-<!-- Sección de Software Restaurantes -->
 <section id="software">
     <h2>Software Especializado para Restaurantes</h2>
     <p style="text-align:center; max-width:800px; margin:0 auto 2rem auto;">
@@ -475,12 +482,12 @@ footer {
 <section id="comments" class="comments-section">
     <h2>Comentarios</h2>
     <textarea placeholder="Escribe tu comentario..."></textarea><br>
-    <button>Enviar</button>
+    <button onclick="sendComment()">Enviar</button>
 </section>
 
 <section id="contact" class="contact">
     <h2>Contacto</h2>
-    <p>Contáctanos al <strong>+502 41529411</strong> o haz clic en el botón de WhatsApp para comunicarte directamente con nosotros.</p>
+    <p>Contáctanos vía WhatsApp o correo electrónico para más información sobre nuestros servicios.</p>
 </section>
 
 <footer>
@@ -502,15 +509,14 @@ const observer = new IntersectionObserver(entries => {
 elements.forEach(el => observer.observe(el));
 
 // Comentarios
-const commentBtn = document.querySelector('.comments-section button');
-const commentBox = document.querySelector('.comments-section textarea');
-commentBtn.addEventListener('click', () => {
+function sendComment(){
+    const commentBox = document.querySelector('.comments-section textarea');
     const comment = commentBox.value.trim();
     if(comment){
         alert(`Gracias por tu comentario: "${comment}"`);
         commentBox.value = '';
     } else alert('Por favor escribe un comentario.');
-});
+}
 
 // Menú hamburguesa
 const menuToggle = document.getElementById('menu-toggle');
