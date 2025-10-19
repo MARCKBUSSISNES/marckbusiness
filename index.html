@@ -1,5 +1,4 @@
 <?php
-// Simulación de datos dinámicos (puedes conectarte a una base de datos más adelante)
 $company_name = "Marck Business";
 $services = [
     "Consultoría Empresarial",
@@ -15,277 +14,280 @@ $services = [
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $company_name; ?></title>
-    <style>
-        :root {
-            --azul-marino: #003366;
-            --naranja: #ff6600;
-            --blanco: #ffffff;
-            --gris: #333333;
-            --gris-claro: #f7f7f7;
-            --negro: #000000;
-            --gradiente: linear-gradient(135deg, #003366, #ff6600);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?= htmlspecialchars($company_name); ?></title>
+<style>
+:root {
+    --azul-marino: #003366;
+    --naranja: #ff6600;
+    --blanco: #ffffff;
+    --gris: #333333;
+    --gris-claro: #f7f7f7;
+    --negro: #000000;
+    --gradiente: linear-gradient(135deg, #003366, #ff6600);
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--gris-claro);
-            color: var(--gris);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+/* Reset y tipografía */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--gris-claro);
+    color: var(--gris);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
 
-        header {
-            background-color: var(--negro);
-            color: var(--blanco);
-            text-align: center;
-            padding: 1.5rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+/* Header */
+header {
+    background-color: var(--negro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 0.5rem auto;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0;
+    margin: 0;
+}
+nav ul li a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--blanco);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    background-color: var(--naranja);
+    color: var(--azul-marino);
+}
 
-        header img {
-            width: 100%;
-            max-width: 360px;
-            height: auto;
-        }
+/* Secciones */
+.section {
+    padding: 3rem 1rem;
+    text-align: center;
+    margin: 1rem auto;
+    border-radius: 10px;
+    max-width: 90%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section:nth-child(even) {
+    background-color: var(--gris-claro);
+}
+.section:nth-child(odd) {
+    background-color: var(--blanco);
+}
+.section h2 {
+    color: var(--azul-marino);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+.section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.section ul li {
+    background-color: var(--naranja);
+    color: var(--blanco);
+    margin: 0.5rem 0;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
+/* Video Section */
+.video-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.video-section video {
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-        nav ul li {
-            flex: none;
-        }
+/* Comments Section */
+.comments-section textarea {
+    width: 90%;
+    max-width: 600px;
+    height: 100px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid var(--gris);
+    border-radius: 5px;
+    resize: none;
+}
+.comments-section button {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--naranja);
+    color: var(--blanco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.comments-section button:hover {
+    background-color: var(--azul-marino);
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--blanco);
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--blanco);
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            display: inline-block;
-        }
+/* Footer */
+footer {
+    background: var(--gradiente);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+}
 
-        nav ul li a:hover {
-            background-color: var(--naranja);
-            color: var(--azul-marino);
-        }
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-image: url('images/whats.png');
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
 
-        .section {
-            padding: 2rem 1rem;
-            text-align: center;
-            background-color: var(--blanco);
-            margin: 1rem auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.5s ease;
-        }
-
-        .section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section h2 {
-            color: var(--azul-marino);
-            margin-bottom: 1rem;
-        }
-
-        .section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .section ul li {
-            background-color: var(--naranja);
-            color: var(--blanco);
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            border-radius: 5px;
-        }
-
-        footer {
-            background: var(--gradiente);
-            color: var(--blanco);
-            text-align: center;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-image: url('images/whats.png');
-            background-size: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        .video-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .video-section video {
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .comments-section {
-            padding: 2rem 1rem;
-            text-align: center;
-            background-color: var(--blanco);
-            margin: 1rem auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
-        }
-
-        .comments-section textarea {
-            width: 90%;
-            max-width: 600px;
-            height: 100px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 2px solid var(--gris);
-            border-radius: 5px;
-            resize: none;
-        }
-
-        .comments-section button {
-            padding: 0.5rem 1.5rem;
-            background-color: var(--naranja);
-            color: var(--blanco);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .comments-section button:hover {
-            background-color: var(--azul-marino);
-        }
-
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-            }
-
-            header img {
-                width: 80%;
-                margin: 0 auto;
-            }
-        }
-    </style>
+/* Responsivo */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+    header img {
+        max-width: 150px;
+    }
+}
+</style>
 </head>
 <body>
-    <header>
-        <img src="images/Diseño%20sin%20titulo.png" alt="Logo de Marck Business">
-        <nav>
-            <ul>
-                <li><a href="#about">Sobre Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#new-services">Nuestros Nuevos Servicios</a></li>
-                <li><a href="#videos">Videos</a></li>
-                <li><a href="#comments">Comentarios</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="about" class="section">
-        <h2>Sobre Nosotros</h2>
-        <p>En Marck Business ofrecemos soluciones estratégicas para el crecimiento empresarial.</p>
-    </section>
-
-    <section id="services" class="section">
-        <h2>Servicios</h2>
+<header>
+    <img src="images/Diseño%20sin%20titulo.png" alt="Logo de <?= htmlspecialchars($company_name); ?>">
+    <nav>
         <ul>
-            <?php foreach ($services as $service): ?>
-                <li><?= htmlspecialchars($service); ?></li>
-            <?php endforeach; ?>
+            <li><a href="#about">Sobre Nosotros</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#new-services">Nuestros Nuevos Servicios</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#comments">Comentarios</a></li>
+            <li><a href="#contact">Contacto</a></li>
         </ul>
-    </section>
+    </nav>
+</header>
 
-    <section id="new-services" class="section">
-        <h2>Servicios Adicionales</h2>
-        <ul>
-            <li>Consultoría en Transformación Digital</li>
-            <li>Optimización de Procesos Empresariales</li>
-            <li>Implementación de ERP y CRM</li>
-            <li>Marketing Digital Avanzado</li>
-            <li>Desarrollo de Soluciones a Medida</li>
-        </ul>
-    </section>
+<section id="about" class="section">
+    <h2>Sobre Nosotros</h2>
+    <p>En <?= htmlspecialchars($company_name); ?> ofrecemos soluciones estratégicas para el crecimiento empresarial.</p>
+</section>
 
-    <section id="videos" class="section video-section">
-        <h2>Videos</h2>
-        <video src="images/video1.mp4" controls></video>
-        <video src="images/video2.mp4" controls></video>
-    </section>
+<section id="services" class="section">
+    <h2>Servicios</h2>
+    <ul>
+        <?php foreach($services as $service): ?>
+        <li><?= htmlspecialchars($service); ?></li>
+        <?php endforeach; ?>
+    </ul>
+</section>
 
-    <section id="comments" class="section comments-section">
-        <h2>Comentarios</h2>
-        <textarea placeholder="Escribe tu comentario..."></textarea>
-        <br>
-        <button>Enviar</button>
-    </section>
+<section id="new-services" class="section">
+    <h2>Servicios Adicionales</h2>
+    <ul>
+        <li>Consultoría en Transformación Digital</li>
+        <li>Optimización de Procesos Empresariales</li>
+        <li>Implementación de ERP y CRM</li>
+        <li>Marketing Digital Avanzado</li>
+        <li>Desarrollo de Soluciones a Medida</li>
+    </ul>
+</section>
 
-    <section id="contact" class="section">
-        <h2>Contacto</h2>
-        <p>Para más información, contáctanos al <strong>+502 58140621</strong>.</p>
-    </section>
+<section id="videos" class="section video-section">
+    <h2>Videos</h2>
+    <video src="images/video1.mp4" controls></video>
+    <video src="images/video2.mp4" controls></video>
+</section>
 
-    <footer>
-        <p>© <?= date("Y"); ?> Marck Business. Todos los derechos reservados.</p>
-    </footer>
+<section id="comments" class="section comments-section">
+    <h2>Comentarios</h2>
+    <textarea placeholder="Escribe tu comentario..."></textarea><br>
+    <button>Enviar</button>
+</section>
 
-    <div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
+<section id="contact" class="section">
+    <h2>Contacto</h2>
+    <p>Para más información, contáctanos al <strong>+502 58140621</strong>.</p>
+</section>
 
-    <script>
-        const sections = document.querySelectorAll('.section');
+<footer>
+    <p>© <?= date("Y"); ?> <?= htmlspecialchars($company_name); ?>. Todos los derechos reservados.</p>
+</footer>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.3
-        });
+<div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+<script>
+// Animaciones de scroll
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('active');
+        }
+    });
+}, {threshold: 0.3});
+sections.forEach((section, index) => {
+    section.style.transitionDelay = `${index * 0.2}s`;
+    observer.observe(section);
+});
+
+// Comentarios funcionales
+const commentBtn = document.querySelector('.comments-section button');
+const commentBox = document.querySelector('.comments-section textarea');
+
+commentBtn.addEventListener('click', () => {
+    const comment = commentBox.value.trim();
+    if(comment){
+        alert(`Gracias por tu comentario: ${comment}`);
+        commentBox.value = '';
+    } else {
+        alert('Por favor escribe un comentario.');
+    }
+});
+</script>
+
 </body>
 </html>
+
