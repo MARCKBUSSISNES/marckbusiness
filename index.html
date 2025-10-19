@@ -342,7 +342,24 @@ footer {
     .hero p{font-size:1rem;}
     .services-grid{gap:1rem;}
     .pricing-grid{gap:1rem;}
-    header ul{flex-direction:column; gap:0.5rem; text-align:center;}
+    
+    /* Menú adaptado y centrado en móviles y tablets */
+    header ul{
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+    }
+    header ul li{
+        width: 100%;
+    }
+    header ul li a{
+        display: block;
+        width: 100%;
+    }
 }
 
 /* Animaciones */
@@ -440,8 +457,8 @@ footer {
 
 <section id="comments" class="comments-section">
     <h2>Comentarios</h2>
-    <textarea id="commentBox" placeholder="Escribe tu comentario..."></textarea><br>
-    <button onclick="sendWhatsAppComment()">Enviar</button>
+    <textarea placeholder="Escribe tu comentario..."></textarea><br>
+    <button>Enviar</button>
 </section>
 
 <section id="contact" class="contact">
@@ -467,18 +484,16 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:0.2});
 elements.forEach(el => observer.observe(el));
 
-// Comentarios vía WhatsApp
-function sendWhatsAppComment() {
-    const comment = document.getElementById('commentBox').value.trim();
+// Comentarios
+const commentBtn = document.querySelector('.comments-section button');
+const commentBox = document.querySelector('.comments-section textarea');
+commentBtn.addEventListener('click', () => {
+    const comment = commentBox.value.trim();
     if(comment){
-        const phone = '+50241529411';
-        const text = encodeURIComponent("Nuevo comentario desde el sitio web:\n\n" + comment);
-        window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-        document.getElementById('commentBox').value = '';
-    } else {
-        alert('Por favor escribe un comentario.');
-    }
-}
+        alert(`Gracias por tu comentario: "${comment}"`);
+        commentBox.value = '';
+    } else alert('Por favor escribe un comentario.');
+});
 </script>
 
 </body>
