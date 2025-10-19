@@ -191,6 +191,68 @@ section h2::after {
     margin-bottom: 1rem;
 }
 
+/* Pricing Cards - Software Restaurantes */
+.pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.pricing-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    flex: 1 1 280px;
+    max-width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+}
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+.pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+.pricing-card ul {
+    list-style: none;
+    text-align: left;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+.pricing-card ul li {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    position: relative;
+}
+.pricing-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+}
+.pricing-card button {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--secondary);
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.pricing-card button:hover { background: var(--primary); }
+.pricing-card.premium {
+    border: 3px solid var(--secondary);
+    background: #fff8f0;
+}
+
 /* Videos */
 .video-section {
     position: relative;
@@ -279,6 +341,7 @@ footer {
     .hero h1{font-size:2.2rem;}
     .hero p{font-size:1rem;}
     .services-grid{gap:1rem;}
+    .pricing-grid{gap:1rem;}
     header ul{flex-direction:column; gap:0.5rem; text-align:center;}
 }
 
@@ -297,6 +360,7 @@ footer {
     <ul>
         <li><a href="#about">Sobre Nosotros</a></li>
         <li><a href="#services">Servicios</a></li>
+        <li><a href="#software">Software Restaurantes</a></li>
         <li><a href="#videos">Videos</a></li>
         <li><a href="#comments">Comentarios</a></li>
         <li><a href="#contact">Contacto</a></li>
@@ -329,6 +393,45 @@ footer {
     </div>
 </section>
 
+<!-- Sección de Software Restaurantes -->
+<section id="software">
+    <h2>Software Especializado para Restaurantes</h2>
+    <p style="text-align:center; max-width:800px; margin:0 auto 2rem auto;">
+        Diseñamos soluciones de software para optimizar la gestión de tu restaurante. Escoge el paquete que mejor se adapte a tus necesidades y lleva tu negocio al siguiente nivel.
+    </p>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>PLUS</h3>
+            <ul>
+                <li>Soporte de 10:00 a 18:00hrs. (opcional)</li>
+                <li>Modificaciones al menú con costo</li>
+                <li>1 capacitación</li>
+                <li>Comandas con ticket en cocina</li>
+                <li>Almacenamiento local</li>
+                <li>Reportes de ventas diarias</li>
+                <li>SIN CONTRATO</li>
+            </ul>
+            <button>Adquirir PLUS</button>
+        </div>
+        <div class="pricing-card premium">
+            <h3>PREMIUM</h3>
+            <ul>
+                <li>Soporte 24/7</li>
+                <li>Modificaciones al menú sin costo</li>
+                <li>2 capacitaciones</li>
+                <li>Servicio de inventarios</li>
+                <li>Comandas digitales en cocina</li>
+                <li>Almacenamiento ILIMITADO</li>
+                <li>Reportes ilimitados</li>
+                <li>Asesorías constantes</li>
+                <li>4 visitas al mes sin costo</li>
+                <li>Facturación electrónica ILIMITADA</li>
+            </ul>
+            <button>Adquirir PREMIUM</button>
+        </div>
+    </div>
+</section>
+
 <section id="videos" class="video-section">
     <h2>Videos</h2>
     <video src="images/video1.mp4" controls></video>
@@ -353,8 +456,8 @@ footer {
 <div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
 
 <script>
-// Animación al scroll
-const sections = document.querySelectorAll('section, .hero h1, .hero p, .hero button, .services-grid .card, .video-section video');
+// Animaciones al scroll
+const elements = document.querySelectorAll('section, .hero h1, .hero p, .hero button, .services-grid .card, .pricing-card, .video-section video');
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -362,7 +465,7 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 },{threshold:0.2});
-sections.forEach(section => observer.observe(section));
+elements.forEach(el => observer.observe(el));
 
 // Comentarios
 const commentBtn = document.querySelector('.comments-section button');
