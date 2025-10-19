@@ -411,7 +411,7 @@ footer {
                 <li>Reportes de ventas diarias</li>
                 <li>SIN CONTRATO</li>
             </ul>
-            <button onclick="window.open('https://wa.me/50241529411','_blank')">Adquirir PLUS</button>
+            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PLUS</button>
         </div>
         <div class="pricing-card premium">
             <h3>PREMIUM</h3>
@@ -427,7 +427,7 @@ footer {
                 <li>4 visitas al mes sin costo</li>
                 <li>Facturación electrónica ILIMITADA</li>
             </ul>
-            <button onclick="window.open('https://wa.me/50241529411','_blank')">Adquirir PREMIUM</button>
+            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PREMIUM</button>
         </div>
     </div>
 </section>
@@ -438,10 +438,13 @@ footer {
     <video src="images/video2.mp4" controls></video>
 </section>
 
+<!-- Comentarios con formulario PHP -->
 <section id="comments" class="comments-section">
     <h2>Comentarios</h2>
-    <textarea placeholder="Escribe tu comentario..."></textarea><br>
-    <button>Enviar</button>
+    <form id="commentForm" method="POST" action="send_comment.php">
+        <textarea name="comment" placeholder="Escribe tu comentario..." required></textarea><br>
+        <button type="submit">Enviar</button>
+    </form>
 </section>
 
 <section id="contact" class="contact">
@@ -466,18 +469,8 @@ const observer = new IntersectionObserver(entries => {
     });
 },{threshold:0.2});
 elements.forEach(el => observer.observe(el));
-
-// Comentarios
-const commentBtn = document.querySelector('.comments-section button');
-const commentBox = document.querySelector('.comments-section textarea');
-commentBtn.addEventListener('click', () => {
-    const comment = commentBox.value.trim();
-    if(comment){
-        alert(`Gracias por tu comentario: "${comment}"`);
-        commentBox.value = '';
-    } else alert('Por favor escribe un comentario.');
-});
 </script>
 
 </body>
 </html>
+
