@@ -21,7 +21,6 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     scroll-behavior: smooth;
-    /* Fondo global con tu imagen */
     background: url('images/fondo de sitio.jpg') center/cover no-repeat fixed;
     position: relative;
     color: var(--primary);
@@ -32,7 +31,7 @@ body::before {
     content:"";
     position:fixed;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5); /* para que el contenido resalte */
+    background: rgba(0,0,0,0.5);
     z-index: -1;
 }
 
@@ -40,7 +39,7 @@ body::before {
 header {
     position: sticky;
     top: 0;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
 }
@@ -51,6 +50,7 @@ header nav {
     max-width: 1200px;
     margin: auto;
     padding: 1rem;
+    flex-wrap: wrap;
 }
 header img {
     max-width: 180px;
@@ -62,6 +62,7 @@ header ul {
     display: flex;
     list-style: none;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 header ul li a {
     text-decoration: none;
@@ -92,7 +93,7 @@ header ul li a:hover {
     content:"";
     position:absolute;
     top:0;left:0;right:0;bottom:0;
-    background: rgba(0,0,0,0.4); /* Overlay oscuro para resaltar texto */
+    background: rgba(0,0,0,0.4);
 }
 .hero h1 {
     font-size: 3rem;
@@ -101,6 +102,9 @@ header ul li a:hover {
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
 }
 .hero p {
     max-width: 700px;
@@ -109,6 +113,9 @@ header ul li a:hover {
     text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease 0.2s;
 }
 .hero button {
     padding: 1rem 2.5rem;
@@ -122,6 +129,9 @@ header ul li a:hover {
     transition: 0.3s;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease 0.4s;
 }
 .hero button:hover { background: var(--white); color: var(--secondary); }
 
@@ -130,12 +140,12 @@ section {
     padding: 5rem 1rem;
     max-width: 1200px;
     margin: 3rem auto;
-    background: rgba(255,255,255,0.95); /* Fondo semi-blanco */
+    background: rgba(255,255,255,0.95);
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.6s ease;
+    transition: all 0.8s ease;
 }
 section.active {
     opacity: 1;
@@ -171,6 +181,8 @@ section h2::after {
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor:pointer;
+    opacity: 0;
+    transform: translateY(50px);
 }
 .services-grid .card:hover {
     transform: translateY(-10px);
@@ -192,7 +204,9 @@ section h2::after {
     max-width:600px;
     border-radius: 15px;
     box-shadow:0 6px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
+    opacity: 0;
+    transform: translateY(50px);
 }
 .video-section video:hover { transform: scale(1.03); }
 
@@ -233,10 +247,6 @@ footer {
     padding:2rem 1rem;
 }
 
-/* Animaciones */
-@keyframes fadeInDown {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
-@keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
-
 /* WhatsApp */
 .whatsapp-btn {
     position:fixed;
@@ -256,6 +266,13 @@ footer {
     .hero h1{font-size:2.2rem;}
     .hero p{font-size:1rem;}
     .services-grid{gap:1rem;}
+    header ul{flex-direction:column; gap:0.5rem; text-align:center;}
+}
+
+/* Animaciones */
+.animate {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 </style>
 </head>
@@ -323,15 +340,15 @@ footer {
 <div class="whatsapp-btn" onclick="window.open('https://wa.me/50258140621', '_blank')"></div>
 
 <script>
-// Animación scroll
-const sections = document.querySelectorAll('section');
+// Animación al scroll
+const sections = document.querySelectorAll('section, .hero h1, .hero p, .hero button, .services-grid .card, .video-section video');
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
-            entry.target.classList.add('active');
+            entry.target.classList.add('animate');
         }
     });
-},{threshold:0.3});
+},{threshold:0.2});
 sections.forEach(section => observer.observe(section));
 
 // Comentarios
@@ -348,3 +365,4 @@ commentBtn.addEventListener('click', () => {
 
 </body>
 </html>
+
