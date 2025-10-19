@@ -58,11 +58,12 @@ header img {
     transition: transform 0.3s ease;
 }
 header img:hover { transform: scale(1.05); }
+
+/* Menú principal */
 header ul {
     display: flex;
     list-style: none;
     gap: 1rem;
-    flex-wrap: wrap;
 }
 header ul li a {
     text-decoration: none;
@@ -75,6 +76,22 @@ header ul li a {
 header ul li a:hover {
     background: var(--secondary);
     color: var(--white);
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+}
+.menu-toggle span {
+    display: block;
+    height: 4px;
+    background: var(--white);
+    border-radius: 2px;
 }
 
 /* Hero */
@@ -342,30 +359,25 @@ footer {
     .hero p{font-size:1rem;}
     .services-grid{gap:1rem;}
     .pricing-grid{gap:1rem;}
-    
-    /* Menú adaptado y centrado en móviles y tablets */
+    /* Menú hamburguesa */
+    .menu-toggle{display:flex;}
     header ul{
         flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
+        gap:0;
         width: 100%;
-        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
-    header ul li{
-        width: 100%;
+    header ul.show{
+        max-height: 500px; /* suficiente para mostrar todos los enlaces */
     }
     header ul li a{
+        padding: 1rem;
         display: block;
-        width: 100%;
+        text-align: center;
+        border-top: 1px solid #333;
     }
-}
-
-/* Animaciones */
-.animate {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
 }
 </style>
 </head>
@@ -374,7 +386,12 @@ footer {
 <header>
 <nav>
     <img src="images/Diseño%20sin%20titulo.png" alt="Logo Marck Business">
-    <ul>
+    <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <ul id="nav-links">
         <li><a href="#about">Sobre Nosotros</a></li>
         <li><a href="#services">Servicios</a></li>
         <li><a href="#software">Software Restaurantes</a></li>
@@ -428,7 +445,7 @@ footer {
                 <li>Reportes de ventas diarias</li>
                 <li>SIN CONTRATO</li>
             </ul>
-            <button onclick="window.open('https://wa.me/50241529411','_blank')">Adquirir PLUS</button>
+            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PLUS</button>
         </div>
         <div class="pricing-card premium">
             <h3>PREMIUM</h3>
@@ -444,7 +461,7 @@ footer {
                 <li>4 visitas al mes sin costo</li>
                 <li>Facturación electrónica ILIMITADA</li>
             </ul>
-            <button onclick="window.open('https://wa.me/50241529411','_blank')">Adquirir PREMIUM</button>
+            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PREMIUM</button>
         </div>
     </div>
 </section>
@@ -493,6 +510,13 @@ commentBtn.addEventListener('click', () => {
         alert(`Gracias por tu comentario: "${comment}"`);
         commentBox.value = '';
     } else alert('Por favor escribe un comentario.');
+});
+
+// Menú hamburguesa
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
 });
 </script>
 
