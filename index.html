@@ -35,11 +35,11 @@ body::before {
     z-index: -1;
 }
 
-/* Header */
+/* Header (cintillo negro) */
 header {
     position: sticky;
     top: 0;
-    background: rgba(255,255,255,0.95);
+    background: #000; /* ahora negro */
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
 }
@@ -66,14 +66,14 @@ header ul {
 }
 header ul li a {
     text-decoration: none;
-    color: var(--primary);
+    color: var(--white);
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: 0.3s;
 }
 header ul li a:hover {
-    background: var(--primary);
+    background: var(--secondary);
     color: var(--white);
 }
 
@@ -126,7 +126,6 @@ header ul li a:hover {
     border-radius: 50px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
     position: relative;
     z-index: 1;
     opacity: 0;
@@ -194,11 +193,24 @@ section h2::after {
 
 /* Videos */
 .video-section {
+    position: relative;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:2rem;
+    padding:5rem 1rem;
+    background: url('images/fondo de sitio.png') center/cover no-repeat;
+    border-radius: 15px;
+    overflow: hidden;
 }
+.video-section::after {
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.5);
+    z-index:0;
+}
+.video-section h2 { position:relative; z-index:1; color:#fff; }
 .video-section video {
     width:90%;
     max-width:600px;
@@ -207,6 +219,8 @@ section h2::after {
     transition: transform 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
     opacity: 0;
     transform: translateY(50px);
+    position: relative;
+    z-index:1;
 }
 .video-section video:hover { transform: scale(1.03); }
 
@@ -365,4 +379,3 @@ commentBtn.addEventListener('click', () => {
 
 </body>
 </html>
-
