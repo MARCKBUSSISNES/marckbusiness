@@ -1,161 +1,2076 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marck Business — Contacto</title>
-  <meta name="description" content="Contacto por WhatsApp o formulario para cotización y demos."/>
-  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marck Business — Soluciones Empresariales Profesionales</title>
+  <meta name="description" content="Consultoría, desarrollo de sistemas, automatización, marketing y soluciones para restaurantes. Marck Business — Innovación que se nota." />
+
+  <!-- Fonts (opcional; si no hay internet usa fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --panel: rgba(255,255,255,.08);
+      --panel2: rgba(255,255,255,.12);
+      --stroke: rgba(255,255,255,.14);
+      --text:#EAF0FF;
+      --muted: rgba(234,240,255,.72);
+
+      --primary:#003366;      /* marca original */
+      --secondary:#ff6600;    /* marca original */
+
+      --accent: #6EE7FF;
+      --success:#38E8A8;
+      --warn:#FFD166;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+
+      --radius: 18px;
+      --radius2: 28px;
+
+      --max: 1200px;
+
+      --headerH: 74px;
+    }
+
+    /* Light mode (toggle) */
+    html[data-theme="light"]{
+      --bg0:#f7f9ff;
+      --bg1:#eef2ff;
+      --panel: rgba(0,0,0,.05);
+      --panel2: rgba(0,0,0,.07);
+      --stroke: rgba(0,0,0,.10);
+      --text:#0b1020;
+      --muted: rgba(11,16,32,.70);
+      --shadow: 0 18px 50px rgba(0,0,0,.12);
+      --shadow2: 0 10px 26px rgba(0,0,0,.10);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html, body{ height:100%; }
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 700px at 15% 10%, rgba(255,102,0,.20), transparent 60%),
+        radial-gradient(900px 700px at 85% 15%, rgba(110,231,255,.18), transparent 60%),
+        radial-gradient(1100px 900px at 50% 120%, rgba(56,232,168,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* Fondo opcional tuyo (se mantiene) */
+    .bg-image{
+      position: fixed;
+      inset:0;
+      background: url('images/fondo de sitio.png') center/cover no-repeat fixed;
+      opacity: .12;
+      z-index:-3;
+      filter: saturate(1.1) contrast(1.05);
+    }
+    .noise{
+      position: fixed;
+      inset:-20%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      opacity:.10;
+      z-index:-2;
+      pointer-events:none;
+      mix-blend-mode: overlay;
+      transform: rotate(2deg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    /* Progress bar */
+    .progress{
+      position: fixed;
+      top:0; left:0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      z-index: 9999;
+      box-shadow: 0 0 18px rgba(255,102,0,.35);
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 2000;
+      height: var(--headerH);
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.18));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    html[data-theme="light"] header{
+      background: linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.40));
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+
+    .nav{
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      padding: 12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .brand img{
+      width: 150px;
+      height:auto;
+      cursor:pointer;
+      transition: transform .25s ease;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+    .brand img:hover{ transform: translateY(-1px) scale(1.02); }
+    .brand .tag{
+      display:none;
+      font-size: 12px;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      list-style:none;
+    }
+    .navlinks a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      color: rgba(234,240,255,.86);
+      transition: .2s ease;
+      border: 1px solid transparent;
+    }
+    html[data-theme="light"] .navlinks a{ color: rgba(11,16,32,.78); }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+    }
+    html[data-theme="light"] .navlinks a:hover{
+      background: rgba(0,0,0,.05);
+      border-color: rgba(0,0,0,.08);
+    }
+    .navlinks a.active{
+      background: linear-gradient(180deg, rgba(255,102,0,.22), rgba(255,102,0,.08));
+      border-color: rgba(255,102,0,.30);
+      color: var(--text);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor:pointer;
+      transition: .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    html[data-theme="light"] .btn{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.04);
+      box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.primary{
+      border-color: rgba(255,102,0,.40);
+      background: linear-gradient(180deg, rgba(255,102,0,.95), rgba(255,102,0,.80));
+      color: #fff;
+      box-shadow: 0 18px 50px rgba(255,102,0,.20);
+    }
+    .btn.primary:hover{ filter: brightness(1.02); }
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.16);
+    }
+    html[data-theme="light"] .btn.ghost{
+      border-color: rgba(0,0,0,.12);
+    }
+
+    .icon{
+      width: 18px;
+      height: 18px;
+      display:inline-block;
+    }
+
+    .hamburger{
+      display:none;
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+    html[data-theme="light"] .hamburger{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.04);
+    }
+    .hamburger span{
+      width: 18px; height: 2px;
+      background: currentColor;
+      position: relative;
+      display:block;
+      border-radius: 2px;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width: 18px; height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: .2s ease;
+    }
+    .hamburger span::before{ top:-6px; }
+    .hamburger span::after{ top: 6px; }
+
+    /* Mobile drawer */
+    .drawer{
+      position: fixed;
+      top: var(--headerH);
+      left:0; right:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events:none;
+      transition: .22s ease;
+      z-index: 1999;
+    }
+    html[data-theme="light"] .drawer{
+      background: rgba(255,255,255,.72);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+    }
+    .drawer.open{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events:auto;
+    }
+    .drawer ul{
+      list-style:none;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 16px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .drawer a{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      font-weight: 700;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    html[data-theme="light"] .drawer a{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+    }
+
+    /* Layout */
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 60px 0 28px;
+      min-height: calc(100vh - var(--headerH));
+      display:flex;
+      align-items:center;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(234,240,255,.90);
+      font-weight: 700;
+      width: fit-content;
+      box-shadow: var(--shadow2);
+    }
+    html[data-theme="light"] .badge{
+      background: rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.10);
+      color: rgba(11,16,32,.85);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--secondary));
+      box-shadow: 0 0 18px rgba(255,102,0,.35);
+    }
+
+    .h1{
+      font-size: clamp(34px, 4.3vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin: 14px 0 12px;
+      font-weight: 900;
+      text-shadow: 0 12px 50px rgba(0,0,0,.35);
+    }
+    .h1 .grad{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.72), var(--accent));
+      -webkit-background-clip: text;
+      background-clip:text;
+      -webkit-text-fill-color: transparent;
+    }
+    html[data-theme="light"] .h1 .grad{
+      background: linear-gradient(90deg, var(--primary), #111827, var(--secondary));
+      -webkit-background-clip: text;
+      background-clip:text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead{
+      color: var(--muted);
+      font-size: clamp(15px, 1.3vw, 18px);
+      line-height: 1.65;
+      margin-bottom: 18px;
+      max-width: 56ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 10px;
+    }
+
+    .mini{
+      display:flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .mini .pill{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(234,240,255,.85);
+      font-weight: 700;
+      box-shadow: var(--shadow2);
+    }
+    html[data-theme="light"] .mini .pill{
+      background: rgba(0,0,0,.03);
+      border: 1px solid rgba(0,0,0,.10);
+      color: rgba(11,16,32,.80);
+    }
+
+    .hero-card{
+      position:relative;
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transform-style: preserve-3d;
+    }
+    html[data-theme="light"] .hero-card{
+      background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.02));
+      border: 1px solid rgba(0,0,0,.10);
+    }
+
+    .hero-card .top{
+      padding: 18px 18px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+    }
+    .hero-card .kpi{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    html[data-theme="light"] .hero-card .kpi{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+    }
+    .hero-card .kpi strong{ font-size: 14px; }
+    .hero-card .kpi span{ font-size: 12px; color: var(--muted); font-weight: 600; display:block; margin-top:2px; }
+
+    .hero-card .content{
+      padding: 18px;
+    }
+    .hero-card .content h3{
+      font-size: 16px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .hero-card .list{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hero-card .item{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      transition: .2s ease;
+    }
+    html[data-theme="light"] .hero-card .item{
+      background: rgba(0,0,0,.03);
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .hero-card .item:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,102,0,.30);
+    }
+    .hero-card .item p{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .hero-card .glow{
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,102,0,.25), transparent 55%),
+                  radial-gradient(circle at 70% 40%, rgba(110,231,255,.20), transparent 55%);
+      filter: blur(18px);
+      opacity: .75;
+      z-index:-1;
+      transform: translateZ(-1px);
+      pointer-events:none;
+      animation: floatGlow 10s ease-in-out infinite;
+    }
+    @keyframes floatGlow{
+      0%,100%{ transform: translate3d(0,0,-1px); }
+      50%{ transform: translate3d(2%, -2%, -1px); }
+    }
+
+    /* Sections */
+    section{
+      margin: 40px 0;
+    }
+    .section{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
+      padding: 34px 22px;
+      overflow:hidden;
+      position:relative;
+    }
+    html[data-theme="light"] .section{
+      background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
+      border: 1px solid rgba(0,0,0,.10);
+    }
+
+    .sec-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .sec-head h2{
+      font-size: clamp(22px, 2.5vw, 32px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .sec-head p{
+      color: var(--muted);
+      max-width: 60ch;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 16px;
+      transition: .2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    html[data-theme="light"] .card{
+      background: rgba(0,0,0,.025);
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,102,0,.28);
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .card .title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .card p{ color: var(--muted); font-size: 14px; line-height: 1.55; font-weight: 600; }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,102,0,.14);
+      border: 1px solid rgba(255,102,0,.22);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    html[data-theme="light"] .chip{
+      color: rgba(11,16,32,.85);
+    }
+
+    /* Stats */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .stat{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    html[data-theme="light"] .stat{
+      background: rgba(0,0,0,.025);
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .stat strong{
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      display:block;
+    }
+    .stat span{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .stat::after{
+      content:"";
+      position:absolute;
+      inset:auto -40% -60% auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,255,.18), transparent 60%);
+      filter: blur(6px);
+      pointer-events:none;
+    }
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .price-card{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    html[data-theme="light"] .price-card{
+      background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .price-card.premium{
+      border-color: rgba(255,102,0,.35);
+      box-shadow: 0 24px 60px rgba(255,102,0,.12);
+    }
+    .price-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .price-top h3{
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+    .price-top .label{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(56,232,168,.12);
+      border: 1px solid rgba(56,232,168,.20);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .premium .price-top .label{
+      background: rgba(255,102,0,.14);
+      border-color: rgba(255,102,0,.24);
+    }
+
+    .price-card ul{
+      list-style:none;
+      margin: 14px 0 16px;
+      display:grid;
+      gap: 9px;
+    }
+    .price-card li{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .tick{
+      width: 18px; height: 18px; flex: 0 0 18px;
+      border-radius: 6px;
+      background: rgba(56,232,168,.16);
+      border: 1px solid rgba(56,232,168,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top: 1px;
+    }
+    .premium .tick{
+      background: rgba(255,102,0,.14);
+      border: 1px solid rgba(255,102,0,.22);
+    }
+
+    /* Video */
+    .video-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    video{
+      width:100%;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    html[data-theme="light"] video{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
+    }
+
+    /* Testimonials */
+    .testimonials{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items:start;
+    }
+    .quotes{
+      display:grid;
+      gap: 12px;
+    }
+    .quote{
+      border-radius: var(--radius2);
+      padding: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    html[data-theme="light"] .quote{
+      background: rgba(0,0,0,.025);
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .quote p{
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.6;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .quote strong{
+      display:block;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .quote span{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .rotator{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+      position: sticky;
+      top: calc(var(--headerH) + 14px);
+    }
+    html[data-theme="light"] .rotator{
+      background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .rotator h3{ font-size: 16px; margin-bottom: 10px; }
+    .rotator .small{ color: var(--muted); font-size: 13px; font-weight: 650; line-height: 1.55; }
+    .rotator .steps{ margin-top: 12px; display:grid; gap: 10px; }
+    .step{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+    }
+    html[data-theme="light"] .step{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.025);
+    }
+    .num{
+      width: 28px; height: 28px; border-radius: 10px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,102,0,.16);
+      border: 1px solid rgba(255,102,0,.22);
+      font-weight: 900;
+    }
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .qa{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+    html[data-theme="light"] .qa{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.025);
+    }
+    .qa button{
+      width:100%;
+      background: transparent;
+      border: none;
+      color: inherit;
+      padding: 14px 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      font-weight: 900;
+      gap: 10px;
+      text-align:left;
+    }
+    .qa .ans{
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .25s ease;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    html[data-theme="light"] .qa .ans{
+      border-top: 1px solid rgba(0,0,0,.08);
+    }
+    .qa .ans p{
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .caret{
+      transition: transform .2s ease;
+      opacity: .85;
+    }
+    .qa.open .ans{ max-height: 240px; }
+    .qa.open .caret{ transform: rotate(180deg); }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .contact-card{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      padding: 16px;
+    }
+    html[data-theme="light"] .contact-card{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.025);
+    }
+    .contact-card h3{ font-size: 16px; margin-bottom: 10px; }
+    .field{
+      display:grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    label{
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+      font-weight: 650;
+      transition: .2s ease;
+    }
+    html[data-theme="light"] input,
+    html[data-theme="light"] textarea,
+    html[data-theme="light"] select{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.75);
+      color: #0b1020;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(255,102,0,.35);
+      box-shadow: 0 0 0 4px rgba(255,102,0,.14);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+
+    .contact-quick{
+      display:grid;
+      gap: 12px;
+    }
+    .quick{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    html[data-theme="light"] .quick{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.02);
+    }
+    .quick p{
+      color: var(--muted);
+      font-weight: 650;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+    .quick strong{ display:block; font-size: 13px; margin-bottom: 2px; }
+
+    /* Comments */
+    .comments-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .comment-list{
+      display:grid;
+      gap: 10px;
+      max-height: 360px;
+      overflow:auto;
+      padding-right: 6px;
+    }
+    .comment{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    html[data-theme="light"] .comment{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(0,0,0,.02);
+    }
+    .comment .meta{
+      display:flex; justify-content:space-between; gap: 10px; align-items:center;
+      margin-bottom: 6px;
+    }
+    .comment .meta strong{ font-size: 12px; }
+    .comment .meta span{ font-size: 12px; color: var(--muted); font-weight: 700; }
+    .comment p{ font-size: 13px; color: var(--muted); font-weight: 650; line-height: 1.55; }
+
+    /* Footer */
+    footer{
+      margin-top: 40px;
+      padding: 26px 0 34px;
+      color: var(--muted);
+      text-align:center;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .footer-row{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    /* Floating buttons */
+    .float{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2500;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items:flex-end;
+    }
+    .fab{
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition: .2s ease;
+      color: var(--text);
+    }
+    html[data-theme="light"] .fab{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.80);
+    }
+    .fab:hover{ transform: translateY(-2px); }
+    .fab.whatsapp{
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 55%),
+                  linear-gradient(180deg, rgba(37,211,102,1), rgba(26,169,80,1));
+      border-color: rgba(37,211,102,.55);
+      color:#fff;
+    }
+    .fab.top{
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(8px);
+      transition: .22s ease;
+    }
+    .fab.top.show{
+      opacity:1;
+      pointer-events:auto;
+      transform: translateY(0);
+    }
+
+    /* Reveal animations */
+    .reveal{
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; 1fr; }
+      .stats{ grid-template-columns: 1fr 1fr; }
+      .pricing{ grid-template-columns: 1fr; }
+      .video-grid{ grid-template-columns: 1fr; }
+      .testimonials{ grid-template-columns: 1fr; }
+      .rotator{ position: relative; top: 0; }
+      .faq{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .comments-wrap{ grid-template-columns: 1fr; }
+      .brand .tag{ display:none; }
+      .navlinks{ display:none; }
+      .hamburger{ display:flex; }
+    }
+
+    @media (max-width: 520px){
+      .drawer ul{ grid-template-columns: 1fr; }
+      .btn span.txt{ display:none; } /* compact */
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="progress" id="progress"></div>
+  <div class="bg-image" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-<header>
-  <div class="container">
-    <nav aria-label="Navegación principal">
+  <header>
+    <div class="nav">
       <div class="brand">
-        <img src="images/Diseño%20sin%20titulo.png" alt="Logo Marck Business" onclick="location.href='index.html'">
+        <!-- Tu logo actual -->
+        <img src="images/Diseño%20sin%20titulo.png" alt="Logo Marck Business" onclick="scrollToId('top')" />
+        <div class="tag">Soluciones empresariales • Sistemas • Web</div>
       </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
-        <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
-      </button>
-      <ul id="nav-links">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="servicios.html">Servicios</a></li>
-        <li><a href="software.html">Software</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-card reveal">
-      <div class="hero-inner">
-        <div>
-          <div class="hero-badge"><span class="dot"></span><span style="font-weight:900;opacity:.92;">Cotizaciones y demos</span></div>
-          <h1>Contáctanos y armamos tu solución</h1>
-          <p>Envíanos los datos mínimos y te respondemos por WhatsApp. Más rápido y directo.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="https://wa.me/50241529411" target="_blank" rel="noopener">WhatsApp →</a>
-            <a class="btn btn-ghost" href="#form">Formulario ★</a>
+      <ul class="navlinks" id="navlinks">
+        <li><a href="#about" data-link>Sobre Nosotros</a></li>
+        <li><a href="#services" data-link>Servicios</a></li>
+        <li><a href="#software" data-link>Software</a></li>
+        <li><a href="#videos" data-link>Videos</a></li>
+        <li><a href="#comments" data-link>Comentarios</a></li>
+        <li><a href="#contact" data-link>Contacto</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn ghost" id="themeBtn" title="Cambiar tema">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 13.2A8.5 8.5 0 0 1 10.8 3a7.6 7.6 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="txt">Tema</span>
+        </button>
+
+        <button class="btn primary" onclick="scrollToId('contact')">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 8V7a2 2 0 0 0-2-2H5A2 2 0 0 0 3 7v10a2 2 0 0 0 2 2h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 15l2 2-5 5h-2v-2l5-5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="txt">Cotizar</span>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <ul>
+        <li><a href="#about" data-link>Sobre Nosotros <span>→</span></a></li>
+        <li><a href="#services" data-link>Servicios <span>→</span></a></li>
+        <li><a href="#software" data-link>Software <span>→</span></a></li>
+        <li><a href="#videos" data-link>Videos <span>→</span></a></li>
+        <li><a href="#comments" data-link>Comentarios <span>→</span></a></li>
+        <li><a href="#contact" data-link>Contacto <span>→</span></a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="badge">
+              <span class="dot"></span>
+              <span>Innovación + Estrategia + Resultados</span>
+            </div>
+
+            <h1 class="h1">
+              Transformamos tu negocio con <span class="grad">tecnología</span> y ejecución profesional.
+            </h1>
+
+            <p class="lead">
+              En Marck Business creamos soluciones que se sienten: automatización, sistemas a medida, desarrollo web,
+              consultoría y herramientas para restaurantes. Todo con enfoque en eficiencia, control y crecimiento.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn primary" onclick="openWhatsApp('Hola, quiero cotizar un servicio con Marck Business. ¿Me apoyas?')">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 12a8 8 0 0 1-12.7 6.3L4 19l.8-3.2A8 8 0 1 1 20 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8.5 9.7c.3-.5.6-.5.9-.4l.8.4c.3.1.4.5.3.8l-.3.8c-.1.3 0 .6.2.8.5.6 1.2 1.2 1.9 1.6.3.2.6.2.8 0l.6-.6c.2-.2.6-.2.9 0l1 .6c.3.2.4.6.2.9-.4.7-1 1.3-1.9 1.3-1.3 0-2.8-.7-4.1-2-1.2-1.2-2-2.7-2-3.9 0-.8.5-1.4.7-1.8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="txt">WhatsApp</span>
+              </button>
+
+              <button class="btn ghost" onclick="scrollToId('services')">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="m19 12-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="txt">Ver servicios</span>
+              </button>
+
+              <button class="btn ghost" onclick="scrollToId('software')">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 7h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="txt">Paquetes</span>
+              </button>
+            </div>
+
+            <div class="mini">
+              <div class="pill">
+                <span class="chip">✓</span>
+                <span>Implementación rápida</span>
+              </div>
+              <div class="pill">
+                <span class="chip">✓</span>
+                <span>Automatización real</span>
+              </div>
+              <div class="pill">
+                <span class="chip">✓</span>
+                <span>Soporte y mejoras</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HERO CARD (tilt) -->
+          <div class="hero-card reveal" id="tiltCard" aria-label="Panel de beneficios">
+            <div class="glow" aria-hidden="true"></div>
+            <div class="top">
+              <div class="kpi">
+                <div class="num" style="width:30px;height:30px;border-radius:12px;">⚡</div>
+                <div>
+                  <strong><span class="count" data-count="72">0</span>h</strong>
+                  <span>Respuesta promedio</span>
+                </div>
+              </div>
+              <div class="kpi">
+                <div class="num" style="width:30px;height:30px;border-radius:12px;background:rgba(110,231,255,.16);border-color:rgba(110,231,255,.22);">📈</div>
+                <div>
+                  <strong><span class="count" data-count="100">0</span>%</strong>
+                  <span>Enfoque en control</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="content">
+              <h3>Lo que entregamos</h3>
+              <div class="list">
+                <div class="item">
+                  <div class="tick" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Procesos más rápidos</strong>
+                    <p>Menos pasos, más control: ventas, inventarios, reportes y operaciones.</p>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div class="tick" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Sistemas hechos a medida</strong>
+                    <p>Diseño y desarrollo según tu negocio (restaurante, tiendas, servicios, etc.).</p>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div class="tick" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Reportes claros</strong>
+                    <p>Decisiones con números: cierres, cortes, formas de pago, ganancias y más.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" onclick="scrollToId('contact')">
+                  <span class="txt">Quiero una demo</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <button class="btn ghost" onclick="scrollToId('comments')">
+                  <span class="txt">Ver comentarios</span>
+                  <span aria-hidden="true">★</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Sobre Nosotros</h2>
+            <p>
+              Combinamos experiencia, creatividad y tecnología para impulsar tu operación diaria.
+              Nuestro objetivo es simple: que tu negocio tenga más control, más velocidad y más ventas.
+            </p>
+          </div>
+          <div class="chip">Marck Business</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong><span class="count" data-count="50">0</span>+</strong>
+            <span>Soluciones y módulos</span>
+          </div>
+          <div class="stat">
+            <strong><span class="count" data-count="24">0</span>/7</strong>
+            <span>Disponibilidad (según plan)</span>
+          </div>
+          <div class="stat">
+            <strong><span class="count" data-count="3">0</span>x</strong>
+            <span>Mejora en flujo de trabajo</span>
+          </div>
+          <div class="stat">
+            <strong><span class="count" data-count="100">0</span>%</strong>
+            <span>Enfoque en resultados</span>
           </div>
         </div>
-        <aside class="hero-side">
-          <h3>Horario / Soporte</h3>
-          <ul>
-            <li><span class="check">✓</span><span>Respuesta rápida</span></li>
-            <li><span class="check">✓</span><span>Demo guiada</span></li>
-            <li><span class="check">✓</span><span>Plan a tu medida</span></li>
-            <li><span class="check">✓</span><span>Implementación</span></li>
-          </ul>
-        </aside>
       </div>
-    </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Nuestros Servicios</h2>
+            <p>Servicios diseñados para negocios reales: ejecución, control y escalabilidad.</p>
+          </div>
+          <button class="btn ghost" onclick="scrollToId('contact')">
+            <span class="txt">Cotizar ahora</span> <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="title">
+              <span class="num">🧠</span> Consultoría Empresarial
+            </div>
+            <p>Mejoramos procesos, reducimos errores y ordenamos la operación con un plan aplicable.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <span class="num" style="background:rgba(110,231,255,.16);border-color:rgba(110,231,255,.22);">📣</span> Marketing & Crecimiento
+            </div>
+            <p>Estrategia de contenido, anuncios y embudos para que tu marca se vea profesional y venda más.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <span class="num" style="background:rgba(255,209,102,.16);border-color:rgba(255,209,102,.22);">💰</span> Planificación Financiera
+            </div>
+            <p>Control de gastos e ingresos, reportes claros y proyecciones para decisiones seguras.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <span class="num" style="background:rgba(56,232,168,.16);border-color:rgba(56,232,168,.22);">🛠️</span> Actualizaciones de Software
+            </div>
+            <p>Optimización, mejoras, seguridad y nuevas funciones sin perder tu flujo actual.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <span class="num">⚙️</span> Desarrollo de Sistemas
+            </div>
+            <p>Soluciones a medida: POS, inventarios, reportes, cierres, tickets, control de pagos y más.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <span class="num" style="background:rgba(110,231,255,.16);border-color:rgba(110,231,255,.22);">🌐</span> Desarrollo Web
+            </div>
+            <p>Landing pages, sitios profesionales y presencia digital con diseño moderno y conversiones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOFTWARE / PRICING -->
+    <section id="software" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Software Especializado para Restaurantes</h2>
+            <p>Paquetes listos para operar: ventas, comandas, control, reportes y soporte según tu necesidad.</p>
+          </div>
+          <div class="chip">Paquetes</div>
+        </div>
+
+        <div class="pricing">
+          <div class="price-card">
+            <div class="price-top">
+              <div>
+                <h3>PLUS</h3>
+                <div class="label">Sin contrato</div>
+              </div>
+              <button class="btn primary" onclick="openWhatsApp('Hola, me interesa el paquete PLUS para restaurantes. ¿Qué incluye exactamente?')">
+                <span class="txt">Adquirir</span> <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <ul>
+              <li><span class="tick" aria-hidden="true">✓</span>Soporte de 10:00 a 18:00hrs. (opcional)</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Modificaciones al menú con costo</li>
+              <li><span class="tick" aria-hidden="true">✓</span>1 capacitación</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Comandas con ticket en cocina</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Almacenamiento local</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Reportes de ventas diarias</li>
+            </ul>
+          </div>
+
+          <div class="price-card premium">
+            <div class="price-top">
+              <div>
+                <h3>PREMIUM</h3>
+                <div class="label">Mejor opción</div>
+              </div>
+              <button class="btn primary" onclick="openWhatsApp('Hola, me interesa el paquete PREMIUM para restaurantes. Quiero una demo y precio.')">
+                <span class="txt">Adquirir</span> <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <ul>
+              <li><span class="tick" aria-hidden="true">✓</span>Soporte 24/7</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Modificaciones al menú sin costo</li>
+              <li><span class="tick" aria-hidden="true">✓</span>2 capacitaciones</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Servicio de inventarios</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Comandas digitales en cocina</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Almacenamiento ILIMITADO</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Reportes ilimitados</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Asesorías constantes</li>
+              <li><span class="tick" aria-hidden="true">✓</span>4 visitas al mes sin costo</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Facturación electrónica ILIMITADA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Videos</h2>
+            <p>Demostraciones, avances y ejemplos reales. (Usa tus archivos en /images/)</p>
+          </div>
+          <div class="chip">Demo</div>
+        </div>
+
+        <div class="video-grid">
+          <video src="images/video1.mp4" controls preload="metadata"></video>
+          <video src="images/video2.mp4" controls preload="metadata"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS + PROCESS -->
+    <section class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Experiencia y Proceso</h2>
+            <p>Trabajamos con un método claro: diagnóstico, propuesta, implementación y mejora continua.</p>
+          </div>
+          <div class="chip">Garantía de orden</div>
+        </div>
+
+        <div class="testimonials">
+          <div class="quotes">
+            <div class="quote">
+              <p>“Pasamos de anotar todo a mano a controlar ventas y cierre de turno en minutos. El sistema se siente hecho para nuestro negocio.”</p>
+              <strong>Cliente — Restaurante</strong>
+              <span>Implementación + capacitación</span>
+            </div>
+            <div class="quote">
+              <p>“Lo que más me gustó fue el soporte y las mejoras. No es solo entregar un sistema, es acompañar el crecimiento.”</p>
+              <strong>Cliente — Tienda</strong>
+              <span>Automatización + reportes</span>
+            </div>
+            <div class="quote">
+              <p>“La web quedó premium y con llamadas a acción claras. Se nota profesional y la gente pregunta más.”</p>
+              <strong>Cliente — Servicios</strong>
+              <span>Landing + WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="rotator">
+            <h3>Cómo trabajamos</h3>
+            <p class="small">Un flujo simple que evita retrasos y asegura resultados medibles.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="num">1</div>
+                <div>
+                  <strong>Diagnóstico</strong>
+                  <div class="small">Entendemos tu operación y definimos objetivos.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="num">2</div>
+                <div>
+                  <strong>Propuesta</strong>
+                  <div class="small">Diseño de solución y alcance claro (sin sorpresas).</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="num">3</div>
+                <div>
+                  <strong>Implementación</strong>
+                  <div class="small">Instalación, pruebas, capacitación y arranque.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="num">4</div>
+                <div>
+                  <strong>Mejoras</strong>
+                  <div class="small">Soporte, ajustes y evolución del sistema.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn primary" onclick="scrollToId('contact')">
+                <span class="txt">Empezar</span> <span aria-hidden="true">→</span>
+              </button>
+              <button class="btn ghost" onclick="openMailFromQuick('Solicitud de información','Hola, me interesa una asesoría para mi negocio. Quiero detalles y precios.')">
+                <span class="txt">Enviar correo</span> <span aria-hidden="true">✉</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Preguntas Frecuentes</h2>
+            <p>Respuestas claras para avanzar rápido.</p>
+          </div>
+          <div class="chip">FAQ</div>
+        </div>
+
+        <div class="faq">
+          <div class="qa">
+            <button type="button">
+              ¿El sistema funciona sin internet?
+              <span class="caret">▾</span>
+            </button>
+            <div class="ans">
+              <p>Sí, se puede trabajar con almacenamiento local. Si necesitas sincronización o respaldos, se agrega como módulo.</p>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button">
+              ¿Pueden personalizar tickets y reportes?
+              <span class="caret">▾</span>
+            </button>
+            <div class="ans">
+              <p>Sí. Ajustamos diseño, logo, tamaño, formato y los datos que aparecen según tu operación.</p>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button">
+              ¿Incluye capacitación?
+              <span class="caret">▾</span>
+            </button>
+            <div class="ans">
+              <p>Incluimos capacitación según el paquete (PLUS o PREMIUM). También podemos dar sesiones extra.</p>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button">
+              ¿Qué necesito para iniciar?
+              <span class="caret">▾</span>
+            </button>
+            <div class="ans">
+              <p>Datos básicos: tipo de negocio, flujo de trabajo, si hay inventarios, formas de pago y si requieres impresora de tickets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section id="comments" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Comentarios</h2>
+            <p>Los comentarios se guardan en este navegador (local) para mostrar testimonios / feedback.</p>
+          </div>
+          <button class="btn ghost" id="clearCommentsBtn" title="Borrar comentarios locales">
+            <span class="txt">Limpiar</span> 🧹
+          </button>
+        </div>
+
+        <div class="comments-wrap">
+          <div class="contact-card">
+            <h3>Deja tu comentario</h3>
+
+            <div class="field">
+              <label for="cName">Nombre</label>
+              <input id="cName" type="text" placeholder="Tu nombre" autocomplete="name" />
+            </div>
+
+            <div class="field">
+              <label for="cText">Comentario</label>
+              <textarea id="cText" placeholder="Escribe tu comentario..."></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn primary" id="sendCommentBtn">
+                <span class="txt">Guardar comentario</span> 💬
+              </button>
+              <button class="btn ghost" id="copyTestimonialBtn" title="Copiar el último comentario como testimonio">
+                <span class="txt">Copiar</span> 📋
+              </button>
+            </div>
+
+            <p style="margin-top:10px; color:var(--muted); font-weight:650; font-size:13px; line-height:1.55;">
+              *Si deseas que el comentario se envíe por correo, usa el formulario de contacto abajo (para que te llegue a tu Gmail).
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Comentarios recientes</h3>
+            <div class="comment-list" id="commentList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wrap">
+      <div class="section reveal">
+        <div class="sec-head">
+          <div>
+            <h2>Contacto</h2>
+            <p>Escríbenos por WhatsApp o envía un correo. El formulario está configurado para enviar a tu Gmail.</p>
+          </div>
+          <div class="chip">Respuesta rápida</div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Formulario de cotización</h3>
+
+            <!-- IMPORTANTE:
+              Esto envía un correo abriendo el cliente del usuario (mailto) hacia:
+              juanluisruizbalcarcel@gmail.com
+              Si quieres envío “directo” sin mailto, se necesita backend o servicio externo (EmailJS/FormSubmit).
+            -->
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Teléfono / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" placeholder="Ej: +502 0000 0000" required />
+              </div>
+
+              <div class="field">
+                <label for="service">Servicio</label>
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>Selecciona una opción</option>
+                  <option>Software para Restaurantes</option>
+                  <option>Desarrollo de Sistemas (a medida)</option>
+                  <option>Desarrollo Web</option>
+                  <option>Consultoría Empresarial</option>
+                  <option>Marketing</option>
+                  <option>Soporte / Actualización</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" placeholder="Cuéntanos qué necesitas..." required></textarea>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" type="submit">
+                  <span class="txt">Enviar correo</span> ✉
+                </button>
+                <button class="btn ghost" type="button" onclick="openWhatsApp(buildWhatsAppLead())">
+                  <span class="txt">Enviar WhatsApp</span> 💬
+                </button>
+              </div>
+            </form>
+
+            <p style="margin-top:10px; color:var(--muted); font-weight:650; font-size:13px; line-height:1.55;">
+              *El botón “Enviar correo” abre el correo del cliente con el mensaje listo. Si quieres envío automático sin abrir correo, dímelo y lo conectamos con EmailJS o FormSubmit.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Contacto directo</h3>
+
+            <div class="contact-quick">
+              <div class="quick">
+                <div class="num" style="width:34px;height:34px;border-radius:14px;">📞</div>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <p><a href="javascript:void(0)" onclick="openWhatsApp('Hola, quiero información de Marck Business.')">+502 4152 9411</a></p>
+                </div>
+              </div>
+
+              <div class="quick">
+                <div class="num" style="width:34px;height:34px;border-radius:14px;background:rgba(110,231,255,.16);border-color:rgba(110,231,255,.22);">✉</div>
+                <div>
+                  <strong>Correo</strong>
+                  <p><a href="mailto:juanluisruizbalcarcel@gmail.com?subject=Cotización%20-%20Marck%20Business&body=Hola%2C%20me%20gustaría%20cotizar%20un%20servicio%20con%20Marck%20Business.%0A%0A%5BDescribe%20tu%20necesidad%20aqu%C3%AD%5D">juanluisruizbalcarcel@gmail.com</a></p>
+                </div>
+              </div>
+
+              <div class="quick">
+                <div class="num" style="width:34px;height:34px;border-radius:14px;background:rgba(255,209,102,.16);border-color:rgba(255,209,102,.22);">🕒</div>
+                <div>
+                  <strong>Horario</strong>
+                  <p>Atención y soporte según paquete. (PLUS / PREMIUM)</p>
+                </div>
+              </div>
+
+              <div class="quick">
+                <div class="num" style="width:34px;height:34px;border-radius:14px;background:rgba(56,232,168,.16);border-color:rgba(56,232,168,.22);">🧾</div>
+                <div>
+                  <strong>¿Listo para cotizar?</strong>
+                  <p>Envíanos tu idea y te respondemos con propuesta clara y tiempos.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" onclick="openWhatsApp('Hola, quiero una propuesta (alcance + precio + tiempo).')">
+                  <span class="txt">WhatsApp ahora</span> →
+                </button>
+                <button class="btn ghost" onclick="scrollToId('services')">
+                  <span class="txt">Ver servicios</span> →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <div>© <span id="year"></span> Marck Business. Todos los derechos reservados.</div>
+      <div class="footer-row">
+        <a class="btn ghost" href="#top" onclick="scrollToId('top')">Inicio</a>
+        <a class="btn ghost" href="#services" onclick="scrollToId('services')">Servicios</a>
+        <a class="btn ghost" href="#contact" onclick="scrollToId('contact')">Contacto</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating buttons -->
+  <div class="float">
+    <button class="fab whatsapp" title="WhatsApp" onclick="openWhatsApp('Hola, quiero información de Marck Business.')">
+      <!-- WhatsApp icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20 12a8 8 0 0 1-12.7 6.3L4 19l.8-3.2A8 8 0 1 1 20 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8.5 9.7c.3-.5.6-.5.9-.4l.8.4c.3.1.4.5.3.8l-.3.8c-.1.3 0 .6.2.8.5.6 1.2 1.2 1.9 1.6.3.2.6.2.8 0l.6-.6c.2-.2.6-.2.9 0l1 .6c.3.2.4.6.2.9-.4.7-1 1.3-1.9 1.3-1.3 0-2.8-.7-4.1-2-1.2-1.2-2-2.7-2-3.9 0-.8.5-1.4.7-1.8Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="fab top" id="topBtn" title="Ir arriba" onclick="scrollToId('top')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="m18 15-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
-</section>
 
-<section id="form">
-  <div class="container">
-    <div class="panel reveal">
-      <div class="section-title">
-        <h2>Formulario de Contacto</h2>
-        <div class="divider"></div>
-        <p>Esto genera un mensaje estructurado y lo manda a WhatsApp.</p>
-      </div>
+  <script>
+    /* ========= Helpers ========= */
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const $ = (sel, root=document) => root.querySelector(sel);
 
-      <div class="form">
-        <div class="field">
-          <label for="cName">Nombre *</label>
-          <input id="cName" type="text" placeholder="Tu nombre" />
-        </div>
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      closeDrawer();
+    }
 
-        <div class="field">
-          <label for="cPhone">Teléfono / WhatsApp *</label>
-          <input id="cPhone" type="tel" placeholder="Ej: 4152-9411" />
-        </div>
+    function openWhatsApp(text){
+      const phone = "50241529411"; // tu número actual
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank");
+    }
 
-        <div class="field">
-          <label for="cEmail">Correo (opcional)</label>
-          <input id="cEmail" type="email" placeholder="correo@ejemplo.com" />
-        </div>
+    function openMailFromQuick(subject, body){
+      const to = "juanluisruizbalcarcel@gmail.com";
+      const url = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    }
 
-        <div class="field">
-          <label for="cService">Servicio</label>
-          <select id="cService">
-            <option value="">Seleccionar...</option>
-            <option>Software Restaurante</option>
-            <option>Desarrollo de Sistema a medida</option>
-            <option>Desarrollo Web</option>
-            <option>Marketing</option>
-            <option>Consultoría</option>
-          </select>
-        </div>
+    function buildWhatsAppLead(){
+      const name = ($("#name")?.value || "").trim();
+      const phone = ($("#phone")?.value || "").trim();
+      const service = ($("#service")?.value || "").trim();
+      const msg = ($("#message")?.value || "").trim();
+      return `Hola, soy ${name || "[Tu nombre]"}.\nMi teléfono: ${phone || "[Tu teléfono]"}.\nServicio: ${service || "[Servicio]"}.\n\nNecesito: ${msg || "[Describe aquí]"}\n\n¿Me puedes enviar una propuesta?`;
+    }
 
-        <div class="field" style="grid-column:1/-1;">
-          <label for="cMessage">Mensaje *</label>
-          <textarea id="cMessage" placeholder="Cuéntanos qué necesitas (ej: sistema POS con tickets, inventario, cierres por turno, etc.)"></textarea>
-        </div>
+    /* ========= Progress bar & top button ========= */
+    const progress = $("#progress");
+    const topBtn = $("#topBtn");
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+      progress.style.width = pct + "%";
 
-        <div class="form-actions">
-          <button class="btn btn-primary" onclick="sendContactToWhats()">Enviar a WhatsApp</button>
-          <a class="btn btn-ghost" href="software.html">Ver planes</a>
-        </div>
+      if (scrollTop > 500) topBtn.classList.add("show");
+      else topBtn.classList.remove("show");
+    });
 
-        <p class="note">
-          Si quieres que el formulario también envíe a correo/Sheets, te lo conecto con Formspree o Google Apps Script.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+    /* ========= Drawer (mobile) ========= */
+    const hamburger = $("#hamburger");
+    const drawer = $("#drawer");
 
-<section>
-  <div class="container">
-    <div class="panel reveal">
-      <div class="section-title">
-        <h2>Comentarios</h2>
-        <div class="divider"></div>
-        <p>Se guardan en este navegador (localStorage). También puedes enviarlos por WhatsApp.</p>
-      </div>
+    function openDrawer(){
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+    }
+    function closeDrawer(){
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+    }
 
-      <div class="form" style="margin-top:1rem;">
-        <div class="field">
-          <label for="cmName">Nombre (opcional)</label>
-          <input id="cmName" type="text" placeholder="Tu nombre" />
-        </div>
+    hamburger?.addEventListener("click", () => {
+      drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+    });
 
-        <div class="field" style="grid-column:1/-1;">
-          <label for="cmText">Comentario *</label>
-          <textarea id="cmText" placeholder="Escribe tu comentario..."></textarea>
-        </div>
+    // Close drawer on link click
+    $$("[data-link]").forEach(a => {
+      a.addEventListener("click", (e) => {
+        // allow normal anchor
+        setTimeout(closeDrawer, 60);
+      });
+    });
 
-        <div class="form-actions">
-          <button class="btn btn-primary" onclick="saveCommentLocal()">Guardar comentario</button>
-          <button class="btn btn-ghost" onclick="clearAllComments()">Borrar todos</button>
-        </div>
-      </div>
+    // Close drawer on outside click
+    document.addEventListener("click", (e) => {
+      if (!drawer.classList.contains("open")) return;
+      const inside = drawer.contains(e.target) || hamburger.contains(e.target);
+      if (!inside) closeDrawer();
+    });
 
-      <div style="margin-top:1.4rem;" id="savedComments"></div>
-    </div>
-  </div>
-</section>
+    /* ========= Active section highlight ========= */
+    const navAnchors = $$('a[data-link]');
+    const sections = navAnchors
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
 
-<footer>
-  <div class="container">
-    <small>© 2025 Marck Business. Todos los derechos reservados.</small>
-  </div>
-</footer>
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navAnchors.forEach(a => {
+          const match = a.getAttribute("href") === `#${id}`;
+          a.classList.toggle("active", match);
+        });
+      });
+    }, { rootMargin: `-${Math.round(parseInt(getComputedStyle(document.documentElement).getPropertyValue("--headerH")||74)/1)}px 0px -70% 0px`, threshold: 0.08 });
 
-<a class="whatsapp-btn" href="https://wa.me/50241529411" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true">
-    <path d="M19.11 17.53c-.28-.14-1.65-.81-1.91-.9-.26-.1-.45-.14-.64.14-.19.28-.74.9-.91 1.09-.17.19-.33.21-.61.07-.28-.14-1.2-.44-2.29-1.41-.85-.76-1.42-1.7-1.59-1.98-.17-.28-.02-.43.13-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44 0 1.44 1.03 2.83 1.18 3.02.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.11.55-.08 1.65-.67 1.88-1.31.23-.64.23-1.19.16-1.31-.07-.12-.26-.19-.55-.33z"/>
-    <path d="M16.04 3C9.39 3 4 8.39 4 15.04c0 2.12.56 4.1 1.53 5.83L4 29l8.37-1.49a12 12 0 0 0 3.67.57C22.69 28.08 28.08 22.69 28.08 16.04 28.08 9.39 22.69 3 16.04 3zm0 22.05c-1.18 0-2.32-.2-3.39-.6l-.49-.18-4.97.88.9-4.84-.2-.5a9.97 9.97 0 0 1-0.78-3.77c0-5.5 4.47-9.97 9.97-9.97s9.97 4.47 9.97 9.97-4.47 9.97-9.97 9.97z"/>
-  </svg>
-</a>
+    sections.forEach(sec => navObserver.observe(sec));
 
-<button class="to-top" id="toTop" aria-label="Volver arriba">↑</button>
+    /* ========= Reveal on scroll ========= */
+    const revealEls = $$(".reveal");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-<script src="assets/js/main.js"></script>
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ========= Counters ========= */
+    function animateCount(el, to, duration=900){
+      const start = 0;
+      const t0 = performance.now();
+      const isInt = Number.isInteger(to);
+
+      function tick(now){
+        const p = Math.min((now - t0) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        const val = start + (to - start) * ease;
+        el.textContent = isInt ? Math.round(val) : val.toFixed(0);
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const countEls = $$(".count");
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const el = entry.target;
+        const to = Number(el.dataset.count || "0");
+        animateCount(el, to);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.25 });
+
+    countEls.forEach(el => countObserver.observe(el));
+
+    /* ========= Tilt effect (hero card) ========= */
+    const tiltCard = $("#tiltCard");
+    if(tiltCard){
+      let rect;
+      const maxTilt = 10;
+
+      function onMove(e){
+        rect = rect || tiltCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotY = (x - 0.5) * (maxTilt * 2);
+        const rotX = (0.5 - y) * (maxTilt * 2);
+        tiltCard.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-1px)`;
+      }
+      function reset(){
+        rect = null;
+        tiltCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      }
+      tiltCard.addEventListener("mousemove", onMove);
+      tiltCard.addEventListener("mouseleave", reset);
+      tiltCard.addEventListener("touchstart", reset, {passive:true});
+    }
+
+    /* ========= FAQ Accordion ========= */
+    $$(".qa").forEach(block => {
+      const btn = $("button", block);
+      btn.addEventListener("click", () => {
+        const open = block.classList.contains("open");
+        // close others
+        $$(".qa.open").forEach(q => q !== block && q.classList.remove("open"));
+        block.classList.toggle("open", !open);
+      });
+    });
+
+    /* ========= Theme toggle (persist) ========= */
+    const themeBtn = $("#themeBtn");
+    const savedTheme = localStorage.getItem("mb_theme");
+    if(savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+
+    themeBtn?.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("mb_theme", next);
+    });
+
+    /* ========= Contact form -> mailto ========= */
+    $("#contactForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const to = "juanluisruizbalcarcel@gmail.com";
+      const name = $("#name").value.trim();
+      const phone = $("#phone").value.trim();
+      const service = $("#service").value;
+      const message = $("#message").value.trim();
+
+      const subject = `Cotización - ${service || "Marck Business"}`;
+      const body =
+`Hola Marck Business,
+
+Nombre: ${name}
+Teléfono: ${phone}
+Servicio: ${service}
+
+Mensaje:
+${message}
+
+Enviado desde el sitio web.`;
+
+      const url = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    });
+
+    /* ========= Comments (localStorage) ========= */
+    const LS_KEY = "mb_comments_v1";
+    const commentList = $("#commentList");
+
+    function loadComments(){
+      try{
+        return JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+      }catch{
+        return [];
+      }
+    }
+    function saveComments(list){
+      localStorage.setItem(LS_KEY, JSON.stringify(list));
+    }
+    function fmtDate(ts){
+      const d = new Date(ts);
+      return d.toLocaleString("es-GT", { year:"numeric", month:"short", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+    }
+
+    function renderComments(){
+      const list = loadComments().slice().reverse();
+      commentList.innerHTML = "";
+      if(list.length === 0){
+        commentList.innerHTML = `<div class="comment"><p>No hay comentarios aún. Sé el primero en dejar uno.</p></div>`;
+        return;
+      }
+      list.forEach(c => {
+        const el = document.createElement("div");
+        el.className = "comment";
+        el.innerHTML = `
+          <div class="meta">
+            <strong>${escapeHtml(c.name || "Anónimo")}</strong>
+            <span>${fmtDate(c.ts)}</span>
+          </div>
+          <p>${escapeHtml(c.text)}</p>
+        `;
+        commentList.appendChild(el);
+      });
+    }
+
+    function escapeHtml(str){
+      return (str || "").replace(/[&<>"']/g, m => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+      }[m]));
+    }
+
+    $("#sendCommentBtn")?.addEventListener("click", () => {
+      const name = ($("#cName").value || "").trim() || "Anónimo";
+      const text = ($("#cText").value || "").trim();
+      if(!text){
+        alert("Por favor escribe un comentario.");
+        return;
+      }
+      const list = loadComments();
+      list.push({ name, text, ts: Date.now() });
+      saveComments(list);
+
+      $("#cText").value = "";
+      renderComments();
+      alert("¡Comentario guardado!");
+    });
+
+    $("#clearCommentsBtn")?.addEventListener("click", () => {
+      if(confirm("¿Seguro que deseas borrar los comentarios guardados en este navegador?")){
+        localStorage.removeItem(LS_KEY);
+        renderComments();
+      }
+    });
+
+    $("#copyTestimonialBtn")?.addEventListener("click", async () => {
+      const list = loadComments();
+      if(list.length === 0){
+        alert("Aún no hay comentarios para copiar.");
+        return;
+      }
+      const last = list[list.length - 1];
+      const txt = `“${last.text}” — ${last.name}`;
+      try{
+        await navigator.clipboard.writeText(txt);
+        alert("Testimonio copiado al portapapeles.");
+      }catch{
+        alert("No se pudo copiar automáticamente. Copia manualmente:\n\n" + txt);
+      }
+    });
+
+    renderComments();
+
+    /* ========= Year ========= */
+    $("#year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
