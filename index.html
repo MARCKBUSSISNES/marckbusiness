@@ -1,530 +1,1039 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marck Business - Soluciones Empresariales Profesionales</title>
-<style>
-:root {
-    --primary: #003366;
-    --secondary: #ff6600;
-    --white: #fff;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marck Business - Soluciones Empresariales Profesionales</title>
+  <meta name="description" content="Marck Business ofrece soluciones empresariales, desarrollo de software, estrategia de marketing y sistemas para restaurantes." />
+  <meta name="theme-color" content="#003366" />
 
-/* Reset y tipografía */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    scroll-behavior: smooth;
-    background: url('images/fondo de sitio.png') center/cover no-repeat fixed;
-    position: relative;
-    color: var(--primary);
-}
+  <style>
+    :root{
+      --primary:#003366;
+      --secondary:#ff6600;
+      --bg:#0b1220;
+      --panel:rgba(255,255,255,0.92);
+      --panel2:rgba(255,255,255,0.96);
+      --text:#0e2238;
+      --muted:#4b5b6b;
+      --white:#fff;
+      --shadow: 0 18px 55px rgba(0,0,0,0.18);
+      --shadow2: 0 10px 28px rgba(0,0,0,0.14);
+      --radius: 18px;
+      --radius2: 26px;
+      --ring: 0 0 0 4px rgba(255,102,0,0.18);
+      --max: 1200px;
+    }
 
-/* Overlay global para legibilidad */
-body::before {
-    content:"";
-    position:fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5);
-    z-index: -1;
-}
+    /* Reset */
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      line-height:1.6;
+      color: var(--white);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, rgba(255,102,0,0.16), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(0,51,102,0.35), transparent 55%),
+        url('images/fondo de sitio.png') center/cover no-repeat fixed;
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+    }
 
-/* Header (cintillo negro) */
-header {
-    position: sticky;
-    top: 0;
-    background: #000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-    flex-wrap: wrap;
-}
-header img {
-    max-width: 180px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-header img:hover { transform: scale(1.05); }
+    /* Overlay global mejorado */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.50)),
+        radial-gradient(900px 500px at 50% 0%, rgba(0,0,0,0.22), transparent 70%);
+      z-index:-1;
+    }
 
-/* Menú principal */
-header ul {
-    display: flex;
-    list-style: none;
-    gap: 1rem;
-    max-height: none; /* asegura que desktop siempre vea los enlaces */
-}
-header ul li a {
-    text-decoration: none;
-    color: var(--white);
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-header ul li a:hover {
-    background: var(--secondary);
-    color: var(--white);
-}
+    a{ color:inherit; }
+    img{ max-width:100%; display:block; }
+    button{ font-family:inherit; }
 
-/* Botón hamburguesa */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 22px;
-    cursor: pointer;
-}
-.menu-toggle span {
-    display: block;
-    height: 4px;
-    background: var(--white);
-    border-radius: 2px;
-}
+    /* Contenedor */
+    .container{ max-width: var(--max); margin: 0 auto; padding: 0 1rem; }
 
-/* Hero */
-.hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    text-align: center;
-    color: #f0f0f0;
-    padding: 0 1rem;
-}
-.hero::after {
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;bottom:0;
-    background: rgba(0,0,0,0.4);
-}
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-.hero p {
-    max-width: 700px;
-    margin: 0 auto 2rem auto;
-    font-size: 1.2rem;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease 0.2s;
-}
-.hero button {
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-    background: var(--secondary);
-    color: var(--white);
-    border: none;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease 0.4s;
-}
-.hero button:hover { background: var(--white); color: var(--secondary); }
+    /* Header */
+    header{
+      position: sticky;
+      top:0;
+      z-index:1000;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    header nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding: 0.9rem 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 0.9rem;
+      min-width: 200px;
+    }
+    header img{
+      width: 170px;
+      height: auto;
+      cursor:pointer;
+      transition: transform 0.25s ease;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+    }
+    header img:hover{ transform: scale(1.03); }
 
-/* Sections */
-section {
-    padding: 5rem 1rem;
-    max-width: 1200px;
-    margin: 3rem auto;
-    background: rgba(255,255,255,0.95);
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-section.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-section h2 {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--primary);
-    position: relative;
-}
-section h2::after {
-    content:"";
-    display:block;
-    width:60px;
-    height:3px;
-    background: var(--secondary);
-    margin:0.5rem auto 0 auto;
-    border-radius:2px;
-}
+    /* Menú */
+    #nav-links{
+      display:flex;
+      list-style:none;
+      gap: 0.55rem;
+      align-items:center;
+    }
+    #nav-links a{
+      text-decoration:none;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.62rem 0.9rem;
+      border-radius: 999px;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      opacity: 0.95;
+      outline: none;
+    }
+    #nav-links a:hover{
+      background: rgba(255,102,0,0.18);
+      box-shadow: var(--ring);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+    #nav-links a:focus-visible{
+      box-shadow: var(--ring);
+      background: rgba(255,102,0,0.18);
+    }
 
-/* Services Grid */
-.services-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap:2rem;
-}
-.services-grid .card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor:pointer;
-    opacity: 0;
-    transform: translateY(50px);
-}
-.services-grid .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-.services-grid .card h3 {
-    margin-bottom: 1rem;
-}
+    /* Botón hamburguesa */
+    .menu-toggle{
+      display:none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .menu-toggle:hover{ background: rgba(255,255,255,0.10); transform: translateY(-1px); }
+    .burger{
+      width: 20px; height: 14px; position: relative;
+    }
+    .burger span{
+      position:absolute;
+      left:0;
+      width:100%;
+      height: 2px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 2px;
+      transition: transform .22s ease, top .22s ease, opacity .22s ease;
+    }
+    .burger span:nth-child(1){ top:0; }
+    .burger span:nth-child(2){ top:6px; }
+    .burger span:nth-child(3){ top:12px; }
+    .menu-open .burger span:nth-child(1){ top:6px; transform: rotate(45deg); }
+    .menu-open .burger span:nth-child(2){ opacity:0; }
+    .menu-open .burger span:nth-child(3){ top:6px; transform: rotate(-45deg); }
 
-/* Pricing Cards - Software Restaurantes */
-.pricing-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-.pricing-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    flex: 1 1 280px;
-    max-width: 400px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-}
-.pricing-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-.pricing-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-.pricing-card ul {
-    list-style: none;
-    text-align: left;
-    padding-left: 0;
-    margin-bottom: 1.5rem;
-}
-.pricing-card ul li {
-    margin: 0.5rem 0;
-    padding-left: 1rem;
-    position: relative;
-}
-.pricing-card ul li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--secondary);
-}
-.pricing-card button {
-    padding: 0.75rem 2rem;
-    border: none;
-    border-radius: 50px;
-    background: var(--secondary);
-    color: var(--white);
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.pricing-card button:hover { background: var(--primary); }
-.pricing-card.premium {
-    border: 3px solid var(--secondary);
-    background: #fff8f0;
-}
+    /* Hero */
+    .hero{
+      padding: 5.5rem 0 3rem 0;
+    }
+    .hero-card{
+      position: relative;
+      border-radius: var(--radius2);
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(0,51,102,0.40), rgba(255,102,0,0.14)),
+        rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      padding: 3.2rem 2rem;
+      align-items:center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      width: fit-content;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(255,102,0,0.18);
+    }
+    .hero h1{
+      font-size: clamp(2rem, 3.3vw, 3.1rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      text-shadow: 0 12px 35px rgba(0,0,0,0.45);
+    }
+    .hero p{
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.88);
+      max-width: 55ch;
+      margin-bottom: 1.6rem;
+    }
+    .hero-cta{
+      display:flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 0.95rem 1.35rem;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 0.55rem;
+      text-decoration:none;
+      user-select:none;
+    }
+    .btn-primary{
+      background: var(--secondary);
+      color: var(--white);
+      box-shadow: 0 18px 40px rgba(255,102,0,0.26);
+    }
+    .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 22px 50px rgba(255,102,0,0.32); }
+    .btn-ghost{
+      background: rgba(255,255,255,0.10);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.14); }
 
-/* Videos */
-.video-section {
-    position: relative;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:2rem;
-    padding:5rem 1rem;
-    border-radius: 15px;
-    overflow: hidden;
-}
-.video-section::after {
-    content:"";
-    position:absolute;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5);
-    z-index:0;
-}
-.video-section h2 { position:relative; z-index:1; color:#fff; }
-.video-section video {
-    width:90%;
-    max-width:600px;
-    border-radius: 15px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, opacity 0.8s ease, transform 0.8s ease;
-    opacity: 0;
-    transform: translateY(50px);
-    position: relative;
-    z-index:1;
-}
-.video-section video:hover { transform: scale(1.03); }
+    .hero-side{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.2rem;
+      backdrop-filter: blur(10px);
+    }
+    .hero-side h3{
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+      opacity: 0.95;
+    }
+    .hero-side ul{
+      list-style: none;
+      display:flex;
+      flex-direction:column;
+      gap: 0.55rem;
+      color: rgba(255,255,255,0.88);
+      font-weight: 600;
+    }
+    .hero-side li{
+      display:flex;
+      gap: 0.6rem;
+      align-items:flex-start;
+    }
+    .check{
+      width: 20px;
+      height: 20px;
+      border-radius: 8px;
+      background: rgba(255,102,0,0.20);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 20px;
+      margin-top: 0.1rem;
+      border: 1px solid rgba(255,102,0,0.25);
+    }
 
-/* Comments */
-.comments-section textarea {
-    width:90%;
-    max-width:600px;
-    height:120px;
-    padding:1rem;
-    border-radius:15px;
-    border:2px solid #ccc;
-    margin-bottom:1rem;
-    resize:none;
-}
-.comments-section button {
-    padding:0.75rem 2rem;
-    border:none;
-    border-radius:50px;
-    background: var(--secondary);
-    color: var(--white);
-    font-weight:bold;
-    cursor:pointer;
-    transition: 0.3s;
-}
-.comments-section button:hover { background: var(--primary); }
+    /* Secciones estilo "glass" */
+    section{
+      margin: 2.2rem auto;
+      padding: 4.4rem 0;
+    }
 
-/* Contact */
-.contact p {
-    text-align:center;
-    font-size:1.2rem;
-}
+    .panel{
+      background: var(--panel);
+      color: var(--text);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 3rem 2rem;
+    }
 
-/* Footer */
-footer {
-    background: var(--primary);
-    color: var(--white);
-    text-align:center;
-    padding:2rem 1rem;
-}
+    .section-title{
+      text-align:center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2{
+      font-size: clamp(1.7rem, 2.2vw, 2.3rem);
+      letter-spacing: -0.01em;
+      color: var(--primary);
+    }
+    .section-title p{
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 0.8rem auto 0;
+    }
+    .divider{
+      width: 64px; height: 4px;
+      background: linear-gradient(90deg, var(--secondary), rgba(255,102,0,0.45));
+      border-radius: 99px;
+      margin: 0.9rem auto 0;
+    }
 
-/* WhatsApp */
-.whatsapp-btn {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    background-image:url('images/whats.png');
-    background-size:cover;
-    border-radius:50%;
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
-    cursor:pointer;
-}
+    /* Services Grid */
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .card{
+      background: var(--panel2);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.35rem;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      cursor: default;
+      position: relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 140px at 0% 0%, rgba(255,102,0,0.20), transparent 60%);
+      opacity: 0;
+      transition: opacity .25s ease;
+      pointer-events:none;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+      border-color: rgba(255,102,0,0.25);
+    }
+    .card:hover::before{ opacity: 1; }
+    .card h3{
+      display:flex;
+      align-items:center;
+      gap: 0.6rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+    }
+    .pill{
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--secondary);
+      background: rgba(255,102,0,0.12);
+      border: 1px solid rgba(255,102,0,0.18);
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+    }
+    .card p{ color: var(--muted); }
 
-/* Responsivo */
-@media(max-width:768px){
-    .hero h1{font-size:2.2rem;}
-    .hero p{font-size:1rem;}
-    .services-grid{gap:1rem;}
-    .pricing-grid{gap:1rem;}
+    /* Pricing */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+      align-items: stretch;
+    }
+    .pricing-card{
+      background: var(--panel2);
+      border-radius: var(--radius2);
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      text-align: left;
+      position: relative;
+      overflow:hidden;
+    }
+    .pricing-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      border-color: rgba(255,102,0,0.22);
+    }
+    .pricing-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .pricing-card h3{
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin:0;
+    }
+    .tag{
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(0,51,102,0.06);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .pricing-card ul{
+      list-style:none;
+      margin: 1rem 0 1.3rem;
+      padding:0;
+      color: var(--muted);
+      display:flex;
+      flex-direction:column;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .pricing-card li{
+      position: relative;
+      padding-left: 1.35rem;
+    }
+    .pricing-card li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color: var(--secondary);
+      font-weight: 900;
+    }
 
-    /* Menú hamburguesa */
-    .menu-toggle{display:flex;}
-    header ul{
-        flex-direction: column;
-        gap:0;
-        width: 100%;
+    .pricing-actions{
+      display:flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .pricing-card .btn{
+      padding: 0.82rem 1.1rem;
+      width: 100%;
+      justify-content:center;
+    }
+    .pricing-card.premium{
+      border: 2px solid rgba(255,102,0,0.45);
+      background:
+        radial-gradient(700px 240px at 20% 0%, rgba(255,102,0,0.18), transparent 65%),
+        var(--panel2);
+    }
+    .premium-badge{
+      position:absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--secondary);
+      color: var(--white);
+      font-weight: 900;
+      font-size: 0.72rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      box-shadow: 0 12px 28px rgba(255,102,0,0.28);
+    }
+
+    /* Videos */
+    #videos .panel{
+      background: rgba(0,0,0,0.55);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    #videos .section-title h2{ color: var(--white); }
+    #videos .section-title p{ color: rgba(255,255,255,0.80); }
+    .video-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+    video{
+      width:100%;
+      border-radius: var(--radius);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    video:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.28);
+    }
+
+    /* Comments */
+    .comments-wrap{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.2rem;
+      margin-top: 1.6rem;
+      align-items:start;
+    }
+    textarea{
+      width:100%;
+      height: 150px;
+      padding: 1rem 1rem;
+      border-radius: var(--radius);
+      border: 2px solid rgba(0,0,0,0.10);
+      outline:none;
+      resize: none;
+      font-size: 1rem;
+      color: var(--text);
+      background: #fff;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    textarea:focus{
+      border-color: rgba(255,102,0,0.40);
+      box-shadow: var(--ring);
+    }
+    .hint{
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .hint .mini{
+      display:inline-flex;
+      gap: .45rem;
+      align-items:center;
+      margin-top: .8rem;
+      background: rgba(0,51,102,0.06);
+      border: 1px solid rgba(0,51,102,0.10);
+      padding: .55rem .7rem;
+      border-radius: 14px;
+      width: fit-content;
+    }
+
+    /* Contact */
+    .contact-actions{
+      display:flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content:center;
+      margin-top: 1.2rem;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 2.8rem;
+      padding: 2rem 0;
+      background: rgba(0,0,0,0.65);
+      border-top: 1px solid rgba(255,255,255,0.10);
+      text-align:center;
+      color: rgba(255,255,255,0.86);
+    }
+    footer small{ opacity: 0.9; }
+
+    /* WhatsApp Button (real) */
+    .whatsapp-btn{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      background: #25D366;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index: 1200;
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: transform .2s ease, box-shadow .2s ease;
+      text-decoration:none;
+    }
+    .whatsapp-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.28);
+    }
+    .whatsapp-btn svg{ width: 28px; height: 28px; fill: #fff; }
+
+    /* Back to top */
+    .to-top{
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--white);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index: 1200;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .to-top.show{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .to-top:hover{ background: rgba(255,255,255,0.14); }
+
+    /* Animaciones (suaves, accesibles) */
+    .reveal{
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .75s ease, transform .75s ease;
+      will-change: transform, opacity;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .reveal{ transition: none; transform:none; opacity:1; }
+      video, .card, .pricing-card, .btn{ transition: none; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns: 1fr; padding: 2.4rem 1.2rem; }
+      .hero-side{ order: 2; }
+      .comments-wrap{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px){
+      .menu-toggle{ display:flex; }
+      #nav-links{
+        position: absolute;
+        left: 0; right: 0;
+        top: 70px;
+        margin: 0 auto;
+        max-width: var(--max);
+        background: rgba(0,0,0,0.90);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 16px;
+        padding: 0.4rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-    header ul.show{
-        max-height: 500px;
-    }
-    header ul li a{
-        padding: 1rem;
-        display: block;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: max-height .25s ease, opacity .25s ease, transform .25s ease;
+      }
+      #nav-links.show{
+        max-height: 420px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #nav-links a{
+        padding: 0.95rem 1rem;
+        border-radius: 14px;
         text-align: center;
-        border-top: 1px solid #333;
+      }
+      .panel{ padding: 2.2rem 1.25rem; }
     }
-}
-
-/* Animaciones */
-.animate {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-</style>
+  </style>
 </head>
+
 <body>
 
-<header>
-<nav>
-    <img src="images/Diseño%20sin%20titulo.png" alt="Logo Marck Business">
-    <div class="menu-toggle" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <ul id="nav-links">
-        <li><a href="#about">Sobre Nosotros</a></li>
-        <li><a href="#services">Servicios</a></li>
-        <li><a href="#software">Software Restaurantes</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="#comments">Comentarios</a></li>
-        <li><a href="#contact">Contacto</a></li>
-    </ul>
-</nav>
-</header>
-
-<section class="hero">
-    <h1>Transformamos tu negocio con innovación y estrategia</h1>
-    <p>Marck Business ofrece soluciones integrales para optimizar procesos, aumentar eficiencia y garantizar resultados medibles.</p>
-    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contáctanos</button>
-</section>
-
-<section id="about">
-    <h2>Sobre Nosotros</h2>
-    <p style="max-width:700px;margin:0 auto;text-align:center;">
-        En Marck Business combinamos experiencia y creatividad para impulsar tu negocio. Somos aliados estratégicos enfocados en la excelencia y la eficiencia.
-    </p>
-</section>
-
-<section id="services">
-    <h2>Nuestros Servicios</h2>
-    <div class="services-grid">
-        <div class="card"><h3>Consultoría Empresarial</h3><p>Asesoría para mejorar la toma de decisiones y eficiencia organizacional.</p></div>
-        <div class="card"><h3>Estrategia de Marketing</h3><p>Planificación y ejecución para potenciar tu marca y aumentar ventas.</p></div>
-        <div class="card"><h3>Planificación Financiera</h3><p>Optimización de recursos y proyecciones para maximizar rentabilidad.</p></div>
-        <div class="card"><h3>Actualizaciones de Software</h3><p>Mantenemos tus sistemas al día con tecnología moderna y segura.</p></div>
-        <div class="card"><h3>Desarrollo de Sistemas</h3><p>Soluciones a medida para automatizar y mejorar procesos internos.</p></div>
-        <div class="card"><h3>Desarrollo Web</h3><p>Páginas profesionales y tiendas online con diseño atractivo y funcional.</p></div>
-    </div>
-</section>
-
-<section id="software">
-    <h2>Software Especializado para Restaurantes</h2>
-    <p style="text-align:center; max-width:800px; margin:0 auto 2rem auto;">
-        Diseñamos soluciones de software para optimizar la gestión de tu restaurante. Escoge el paquete que mejor se adapte a tus necesidades y lleva tu negocio al siguiente nivel.
-    </p>
-    <div class="pricing-grid">
-        <div class="pricing-card">
-            <h3>PLUS</h3>
-            <ul>
-                <li>Soporte de 10:00 a 18:00hrs. (opcional)</li>
-                <li>Modificaciones al menú con costo</li>
-                <li>1 capacitación</li>
-                <li>Comandas con ticket en cocina</li>
-                <li>Almacenamiento local</li>
-                <li>Reportes de ventas diarias</li>
-                <li>SIN CONTRATO</li>
-            </ul>
-            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PLUS</button>
+  <header>
+    <div class="container">
+      <nav aria-label="Navegación principal">
+        <div class="brand">
+          <img src="images/Diseño%20sin%20titulo.png" alt="Logo Marck Business" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">
         </div>
-        <div class="pricing-card premium">
-            <h3>PREMIUM</h3>
-            <ul>
-                <li>Soporte 24/7</li>
-                <li>Modificaciones al menú sin costo</li>
-                <li>2 capacitaciones</li>
-                <li>Servicio de inventarios</li>
-                <li>Comandas digitales en cocina</li>
-                <li>Almacenamiento ILIMITADO</li>
-                <li>Reportes ilimitados</li>
-                <li>Asesorías constantes</li>
-                <li>4 visitas al mes sin costo</li>
-                <li>Facturación electrónica ILIMITADA</li>
-            </ul>
-            <button onclick="window.open('https://wa.me/50241529411', '_blank')">Adquirir PREMIUM</button>
-        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+          <div class="burger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+
+        <ul id="nav-links">
+          <li><a href="#about">Sobre Nosotros</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#software">Software Restaurantes</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#comments">Comentarios</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
     </div>
-</section>
+  </header>
 
-<section id="videos" class="video-section">
-    <h2>Videos</h2>
-    <video src="images/video1.mp4" controls></video>
-    <video src="images/video2.mp4" controls></video>
-</section>
+  <div id="top"></div>
 
-<section id="comments" class="comments-section">
-    <h2>Comentarios</h2>
-    <textarea placeholder="Escribe tu comentario..."></textarea><br>
-    <button onclick="sendComment()">Enviar</button>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card reveal">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-badge">
+              <span class="dot"></span>
+              <span style="font-weight:800; opacity:.92;">Soluciones reales • Resultados medibles</span>
+            </div>
 
-<section id="contact" class="contact">
-    <h2>Contacto</h2>
-    <p>Contáctanos vía WhatsApp o correo electrónico para más información sobre nuestros servicios.</p>
-</section>
+            <h1>Transformamos tu negocio con innovación, estrategia y tecnología</h1>
+            <p>
+              En Marck Business optimizamos procesos, aumentamos eficiencia y construimos sistemas a medida
+              para que tu operación sea más rápida, ordenada y rentable.
+            </p>
 
-<footer>
-    <p>© 2025 Marck Business. Todos los derechos reservados.</p>
-</footer>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#contact" aria-label="Ir a contacto">
+                Contáctanos
+                <span aria-hidden="true">→</span>
+              </a>
 
-<div class="whatsapp-btn" onclick="window.open('https://wa.me/50241529411', '_blank')"></div>
+              <a class="btn btn-ghost" href="#software" aria-label="Ver planes de software">
+                Ver planes
+                <span aria-hidden="true">★</span>
+              </a>
+            </div>
+          </div>
 
-<script>
-// Animaciones al scroll
-const elements = document.querySelectorAll('section, .hero h1, .hero p, .hero button, .services-grid .card, .pricing-card, .video-section video');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('animate');
+          <aside class="hero-side">
+            <h3>¿Qué obtienes con nosotros?</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Automatización y control para tu negocio</span></li>
+              <li><span class="check">✓</span><span>Implementación y capacitación</span></li>
+              <li><span class="check">✓</span><span>Soporte y mejoras continuas</span></li>
+              <li><span class="check">✓</span><span>Diseño profesional (web + sistemas)</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Sobre Nosotros</h2>
+          <div class="divider"></div>
+          <p>
+            En Marck Business combinamos experiencia y creatividad para impulsar tu negocio.
+            Somos aliados estratégicos enfocados en la excelencia, la eficiencia y la innovación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Nuestros Servicios</h2>
+          <div class="divider"></div>
+          <p>Servicios profesionales para que tu operación sea más rentable, ordenada y escalable.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="card reveal">
+            <h3>Consultoría Empresarial <span class="pill">Estrategia</span></h3>
+            <p>Asesoría para mejorar decisiones, procesos y estructura operativa.</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Estrategia de Marketing <span class="pill">Ventas</span></h3>
+            <p>Planificación y ejecución para potenciar tu marca y aumentar conversiones.</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Planificación Financiera <span class="pill">Control</span></h3>
+            <p>Optimización de recursos, proyecciones y rentabilidad.</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Actualizaciones de Software <span class="pill">Seguridad</span></h3>
+            <p>Mantenemos tus sistemas al día con tecnología moderna y estable.</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Desarrollo de Sistemas <span class="pill">A medida</span></h3>
+            <p>Soluciones personalizadas para automatizar y mejorar procesos internos.</p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Desarrollo Web <span class="pill">Profesional</span></h3>
+            <p>Páginas y tiendas online con diseño atractivo, rápido y funcional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE -->
+  <section id="software">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Software Especializado para Restaurantes</h2>
+          <div class="divider"></div>
+          <p>
+            Diseñamos soluciones para optimizar la gestión de tu restaurante. Elige el paquete ideal y lleva
+            tu operación al siguiente nivel.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="pricing-head">
+              <h3>PLUS</h3>
+              <span class="tag">Ideal para iniciar</span>
+            </div>
+            <ul>
+              <li>Soporte de 10:00 a 18:00hrs. (opcional)</li>
+              <li>Modificaciones al menú con costo</li>
+              <li>1 capacitación</li>
+              <li>Comandas con ticket en cocina</li>
+              <li>Almacenamiento local</li>
+              <li>Reportes de ventas diarias</li>
+              <li>SIN CONTRATO</li>
+            </ul>
+            <div class="pricing-actions">
+              <button class="btn btn-primary" onclick="goWhats('PLUS')">Adquirir PLUS</button>
+            </div>
+          </div>
+
+          <div class="pricing-card premium reveal">
+            <span class="premium-badge">RECOMENDADO</span>
+            <div class="pricing-head">
+              <h3>PREMIUM</h3>
+              <span class="tag">Máximo rendimiento</span>
+            </div>
+            <ul>
+              <li>Soporte 24/7</li>
+              <li>Modificaciones al menú sin costo</li>
+              <li>2 capacitaciones</li>
+              <li>Servicio de inventarios</li>
+              <li>Comandas digitales en cocina</li>
+              <li>Almacenamiento ILIMITADO</li>
+              <li>Reportes ilimitados</li>
+              <li>Asesorías constantes</li>
+              <li>4 visitas al mes sin costo</li>
+              <li>Facturación electrónica ILIMITADA</li>
+            </ul>
+            <div class="pricing-actions">
+              <button class="btn btn-primary" onclick="goWhats('PREMIUM')">Adquirir PREMIUM</button>
+              <button class="btn btn-ghost" onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">
+                Ver demostración
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Videos</h2>
+          <div class="divider"></div>
+          <p>Mira ejemplos y demostraciones de nuestras soluciones.</p>
+        </div>
+
+        <div class="video-grid">
+          <video class="reveal" src="images/video1.mp4" controls preload="metadata"></video>
+          <video class="reveal" src="images/video2.mp4" controls preload="metadata"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENTS -->
+  <section id="comments">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Comentarios</h2>
+          <div class="divider"></div>
+          <p>Déjanos tu mensaje. (En esta versión se muestra un aviso; si quieres, lo guardamos en Google Sheets o correo.)</p>
+        </div>
+
+        <div class="comments-wrap">
+          <div>
+            <textarea id="commentBox" placeholder="Escribe tu comentario..."></textarea>
+            <div style="margin-top: .9rem; display:flex; gap:.7rem; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="sendComment()">Enviar</button>
+              <button class="btn btn-ghost" onclick="clearComment()">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="hint">
+            <strong style="color:var(--primary);">Tip:</strong> Si quieres que el comentario se guarde de verdad:
+            <div class="mini">✓ Google Sheets</div>
+            <div class="mini">✓ Formspree</div>
+            <div class="mini">✓ Envío a WhatsApp</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="section-title">
+          <h2>Contacto</h2>
+          <div class="divider"></div>
+          <p>Escríbenos por WhatsApp para cotización, demo o soporte.</p>
+
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://wa.me/50241529411" target="_blank" rel="noopener">
+              WhatsApp
+              <span aria-hidden="true">💬</span>
+            </a>
+            <a class="btn btn-ghost" href="#services">
+              Ver servicios
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>© 2025 Marck Business. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating -->
+  <a class="whatsapp-btn" href="https://wa.me/50241529411" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+    <!-- WhatsApp icon -->
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M19.11 17.53c-.28-.14-1.65-.81-1.91-.9-.26-.1-.45-.14-.64.14-.19.28-.74.9-.91 1.09-.17.19-.33.21-.61.07-.28-.14-1.2-.44-2.29-1.41-.85-.76-1.42-1.7-1.59-1.98-.17-.28-.02-.43.13-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.44 0 1.44 1.03 2.83 1.18 3.02.14.19 2.03 3.1 4.92 4.35.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.11.55-.08 1.65-.67 1.88-1.31.23-.64.23-1.19.16-1.31-.07-.12-.26-.19-.55-.33z"/>
+      <path d="M16.04 3C9.39 3 4 8.39 4 15.04c0 2.12.56 4.1 1.53 5.83L4 29l8.37-1.49a12 12 0 0 0 3.67.57C22.69 28.08 28.08 22.69 28.08 16.04 28.08 9.39 22.69 3 16.04 3zm0 22.05c-1.18 0-2.32-.2-3.39-.6l-.49-.18-4.97.88.9-4.84-.2-.5a9.97 9.97 0 0 1-0.78-3.77c0-5.5 4.47-9.97 9.97-9.97s9.97 4.47 9.97 9.97-4.47 9.97-9.97 9.97z"/>
+    </svg>
+  </a>
+
+  <!-- Back to top -->
+  <button class="to-top" id="toTop" aria-label="Volver arriba">↑</button>
+
+  <script>
+    // ===== Scroll reveal (mejorado) =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
         }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // ===== Comentarios =====
+    function sendComment(){
+      const box = document.getElementById('commentBox');
+      const comment = (box.value || '').trim();
+      if(!comment){
+        alert('Por favor escribe un comentario.');
+        box.focus();
+        return;
+      }
+      alert(`Gracias por tu comentario:\n\n"${comment}"`);
+      box.value = '';
+    }
+    function clearComment(){
+      const box = document.getElementById('commentBox');
+      box.value = '';
+      box.focus();
+    }
+
+    // ===== WhatsApp (con plan) =====
+    function goWhats(plan){
+      const msg = encodeURIComponent(`Hola, estoy interesado en el paquete ${plan} de Software para Restaurantes. ¿Me das información y una demo?`);
+      window.open(`https://wa.me/50241529411?text=${msg}`, '_blank');
+    }
+
+    // ===== Menú hamburguesa (accesible) =====
+    const menuBtn = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-links');
+
+    function closeMenu(){
+      nav.classList.remove('show');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded','false');
+    }
+    function toggleMenu(){
+      const isOpen = nav.classList.toggle('show');
+      menuBtn.classList.toggle('menu-open', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Cierra menú al dar click en un link (mobile)
+    nav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', () => {
+        if(window.innerWidth <= 768) closeMenu();
+      });
     });
-},{threshold:0.2});
-elements.forEach(el => observer.observe(el));
 
-// Comentarios
-function sendComment(){
-    const commentBox = document.querySelector('.comments-section textarea');
-    const comment = commentBox.value.trim();
-    if(comment){
-        alert(`Gracias por tu comentario: "${comment}"`);
-        commentBox.value = '';
-    } else alert('Por favor escribe un comentario.');
-}
+    // Cierra con ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeMenu();
+    });
 
-// Menú hamburguesa
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-});
-</script>
-
+    // ===== Back to top =====
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 500) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+  </script>
 </body>
 </html>
